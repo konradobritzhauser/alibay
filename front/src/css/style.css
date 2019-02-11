@@ -8,12 +8,14 @@
 
 .login-form-modal {
   position: relative;
+  top: 14vh;
   width: 500px;
-  height: 250px;
+  height: 300px;
   margin: 0 auto;
   padding: 50px;
   border: 2px solid gray;
   border-radius: 5px;
+  background-color: white;
 }
 
 .close-login {
@@ -23,14 +25,23 @@
   right: 10px;
 }
 
+.aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 .signup-form-modal {
   position: relative;
+  top: 14vh;
   width: 500px;
-  height: 250px;
+  height: 300px;
   margin: 0 auto;
   padding: 50px;
   border: 2px solid gray;
   border-radius: 5px;
+  background-color: white;
 }
 
 .close-signup {
@@ -38,4 +49,12 @@
   font-size: 25px;
   top: 0px;
   right: 10px;
+}
+
+.page-footer {
+  position: fixed;
+  height: 70px;
+  bottom: 0;
+  width: 100%;
+  z-index: -9999;
 }
