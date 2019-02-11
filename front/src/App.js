@@ -11,36 +11,36 @@ import SellForm from './components/SellForm'
 import Cart from './components/Cart'
 
 class App extends Component {
-  renderSignup () {
+  renderSignup() {
     return <Signup />
   }
 
-  renderLogin () {
+  renderLogin() {
     return <Login />
   }
 
-  renderItems () {
-    return (<Items />)
+  renderItems() {
+    return <Items />
   }
 
-  renderSellForm () {
-    return (<SellForm />)
+  renderSellForm() {
+    return <SellForm />
   }
 
-  renderCart () {
-    return (<Cart />)
+  renderCart() {
+    return <Cart />
   }
 
-  render () {
+  render() {
     return (
       <BrowserRouter>
         <div>
           <Navbar />
-          <Route exact path='/signup' render={this.renderSignup} />
-          <Route exact path='/login' render={this.renderLogin} />
-          <Route exact path='/items' render={this.renderItems} />
-          <Route exact path='/sell-form' render={this.renderSellForm} />
-          <Route exact path='/cart' render={this.renderCart} />
+          <Route exact path="/signup" render={this.renderSignup} />
+          <Route exact path="/login" render={this.renderLogin} />
+          <Route exact path="/items" render={this.renderItems} />
+          <Route exact path="/sell-form" render={this.renderSellForm} />
+          <Route exact path="/cart" render={this.renderCart} />
           <Footer />
         </div>
       </BrowserRouter>

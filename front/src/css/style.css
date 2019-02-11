@@ -5,3 +5,37 @@
 #search-button-nav {
   width: 7em;
 }
+
+.login-form-modal {
+  position: relative;
+  width: 500px;
+  height: 250px;
+  margin: 0 auto;
+  padding: 50px;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
+.close-login {
+  position: absolute;
+  font-size: 25px;
+  top: 0px;
+  right: 10px;
+}
+
+.signup-form-modal {
+  position: relative;
+  width: 500px;
+  height: 250px;
+  margin: 0 auto;
+  padding: 50px;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
+.close-signup {
+  position: absolute;
+  font-size: 25px;
+  top: 0px;
+  right: 10px;
+}
