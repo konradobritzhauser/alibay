@@ -1,14 +1,29 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
+import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css'
+
 import Navbar from './components/Navbar'
+import Signup from './components/Signup'
+import Login from './components/Login'
 
 class App extends Component {
-  render() {
+  renderSignup () {
+    return (<Signup />)
+  }
+
+  renderLogin () {
+    return (<Login />)
+  }
+
+  render () {
     return (
-      <div>
-        <Navbar />
-      </div>
+      <BrowserRouter>
+        <div>
+          <Navbar />
+          <Route exact path='/signup' render={this.renderSignup} />
+          <Route exact path='/login' render={this.renderLogin} />
+        </div>
+      </BrowserRouter>
     )
   }
 }
