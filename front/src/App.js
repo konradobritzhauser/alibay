@@ -5,23 +5,24 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Signup from './components/Signup'
 import Login from './components/Login'
+import Footer from './components/Footer'
 
 class App extends Component {
-  renderSignup () {
-    return (<Signup />)
+  renderSignup() {
+    return <Signup />
   }
 
-  renderLogin () {
-    return (<Login />)
+  renderLogin() {
+    return <Login />
   }
 
-  render () {
+  render() {
     return (
       <BrowserRouter>
         <div>
           <Navbar />
-          <Route exact path='/signup' render={this.renderSignup} />
-          <Route exact path='/login' render={this.renderLogin} />
+          <Route exact path="/signup" render={this.renderSignup} />
+          <Route exact path="/login" render={this.renderLogin} />
         </div>
       </BrowserRouter>
     )
