@@ -1,63 +1,64 @@
 import React, { Component } from 'react'
 import '../css/style.css'
+import { Link } from 'react-router-dom'
 
 class Navbar extends Component {
-  render() {
+  render () {
     return (
       <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="#">
+        <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+          <Link to='/' class='navbar-brand'>
             Navbar
-          </a>
+          </Link>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+          <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+            <ul class='navbar-nav mr-auto'>
+              <li class='nav-item'>
+                <Link to='/items' class='nav-link'>
                   Buy
-                </a>
+                </Link>
               </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li class='nav-item'>
+                <Link to='/sell-form' class='nav-link'>
                   Sell
-                </a>
+                </Link>
               </li>
             </ul>
 
-            <form class="form-inline my-2 my-lg-0 mr-auto ml-auto">
+            <form class='form-inline my-2 my-lg-0 mr-auto ml-auto'>
               <input
-                class="form-control mr-sm-2"
-                id="navbar-search"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
+                class='form-control mr-sm-2'
+                id='navbar-search'
+                type='search'
+                placeholder='Search'
+                aria-label='Search'
               />
               <button
-                class="btn btn-outline-secondary my-2 my-sm-0"
-                type="submit"
+                class='btn btn-outline-secondary my-2 my-sm-0'
+                type='submit'
               >
                 Search
               </button>
             </form>
 
-            <ul class="navbar-nav justify-content-end">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+            <ul class='navbar-nav justify-content-end'>
+              <li class='nav-item'>
+                <Link to='/login' class='nav-link'>
                   Login
-                </a>
+                </Link>
               </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li class='nav-item'>
+                <Link to='/signup' class='nav-link'>
                   Signup
-                </a>
+                </Link>
               </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li class='nav-item'>
+                <Link to='/cart' class='nav-link'>
                   My Cart
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
