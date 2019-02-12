@@ -41,6 +41,7 @@ router.post("/addItem", (req, res) => {
 
   dbo.collection("items").insertOne(reqBody, (err, result) => {
     if (err) throw err;
+    console.log(result)
     console.log("success");
     res.status(200).json({ success: true });
   });

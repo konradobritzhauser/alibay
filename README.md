@@ -34,7 +34,7 @@ ex:
 passwords match: `{ message: true }`  
 passwords dont match: `{ message: false }`
 
-###Add item endpoint
+### Add item endpoint
 path:/items/addItem
 expects and object such as :
    ` {description:"desc", `
