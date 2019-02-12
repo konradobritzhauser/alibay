@@ -1,24 +1,22 @@
-let express=require('express')
-let app=express()
-let bodyParser=require('body-parser')
-let cors=require('cors')
+let express = require('express')
+let app = express()
+let bodyParser = require('body-parser')
+let cors = require('cors')
 
-let testRoute=require('./routes/test')
-let signupRoute=require('./routes/user')
-let itemsRoute=require('./routes/items')
+let testRoute = require('./routes/test')
+let signupRoute = require('./routes/user')
+let itemsRoute = require('./routes/items')
 
-let PORT=4000
+let PORT = 4000
 
 app.use(cors())
 
 app.use(bodyParser.json())
 
-app.use('/test',testRoute)
-app.use('/user',signupRoute)
-app.use('/items',itemsRoute)
+app.use('/test', testRoute)
+app.use('/user', signupRoute)
+app.use('/items', itemsRoute)
 
-app.listen(PORT,()=>{
-    console.log("listening on port",PORT)
+app.listen(PORT, () => {
+  console.log('listening on port', PORT)
 })
-
-

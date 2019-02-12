@@ -66,9 +66,11 @@ class Signup extends Component {
               />
             </div>
             <div className="form-group">
-              <button type="submit" className="btn btn-dark btn-block">
-                Create Account
-              </button>
+              <input
+                type="submit"
+                className="btn btn-dark btn-block"
+                value="Create Account"
+              />
             </div>
           </form>
         </div>

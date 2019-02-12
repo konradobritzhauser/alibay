@@ -23,6 +23,7 @@
   font-size: 25px;
   top: 0px;
   right: 10px;
+  cursor: pointer;
 }
 
 .aligner {
@@ -49,6 +50,7 @@
   font-size: 25px;
   top: 0px;
   right: 10px;
+  cursor: pointer;
 }
 
 .page-footer {
