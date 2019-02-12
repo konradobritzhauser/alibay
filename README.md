@@ -48,13 +48,14 @@ method:Post
 path:/items/addItem  
 expects an object such as :  
 ```JSON
-   {title:"desc", 
-    category:"book",      
-    description:"whatever",   
-    price:333, 
-    fd: "find out later",    
-    likes:20,    
-    seller:"dennis"}    
+   {"title":"desc", 
+    "category":"book",      
+    "description":"whatever",   
+    "price":333, 
+    "fd": "find out later",    
+    "likes":20,    
+    "seller":"dennis"}
+
 ```
 
  any information missing or empty strings from any of these properties will return an error and not add an item to the database
