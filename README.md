@@ -6,7 +6,7 @@
   - [Docs](#docs)
   - [Endpoints](#endpoints)
     - [Signup endpoint](#signup-endpoint)
-    - [login endpoint](#login-endpoint)
+    - [Login endpoint](#login-endpoint)
 
 <!-- /TOC -->
 
@@ -24,7 +24,7 @@ Expects an object `{ username , password }` properties and their values.
 ex:  
 `{ username: "dennis", password: "is cool" }`
 
-### login endpoint
+### Login endpoint
 
 Expects an object with username and password properties and their values.  
 ex:  

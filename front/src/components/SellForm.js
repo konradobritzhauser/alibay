@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 export class SellForm extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       title: '',
@@ -19,58 +19,57 @@ export class SellForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  titleHandler(event) {
+  titleHandler = (event) => {
     this.setState({ title: event.target.value })
   }
 
-  categoryHandler(event) {
+  categoryHandler (event) {
     this.setState({ category: event.target.value })
   }
 
-  descriptionHandler(event) {
+  descriptionHandler (event) {
     this.setState({ description: event.target.value })
   }
 
-  priceSelectHandler(event) {
+  priceSelectHandler (event) {
     this.setState({ price: event.target.value })
   }
 
-  imageSelectHandler(event) {
+  imageSelectHandler (event) {
     this.setState({ image: event.target.files[0] })
   }
 
-  handleSubmit(event) {
+  handleSubmit (event) {
     event.preventDefault()
-    let currentBody = {
-      title: this.state.title,
-      category: this.state.category,
-      description: this.state.description,
-      price: this.state.price,
-      image: this.state.image
+    let {title, category, description, price, image} = this.state
+    let body = {
+      title,
+      category,
+      description,
+      price,
+      image
     }
-    axios('http://localhost:4000/user/sellForm', {
-      method: 'POST',
-      body: JSON.stringify(currentBody)
-    })
+    axios.post('/user/sell-form', { body })
+      .then(res=> console.log('res', res))
   }
 
-  render() {
+  render () {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
+          <div className='form-group'>
             <input
-              type="text"
-              placeholder="Title"
+              type='text'
+              placeholder='Title'
               onChange={this.titleHandler}
-              className="form-control"
+              className='form-control'
             />
           </div>
-          <div className="form-group">
-            <label for="category">Select one:</label>
+          <div className='form-group'>
+            <label for='category'>Select one:</label>
             <select
-              class="form-control"
-              id="category"
+              className='form-control'
+              id='category'
               onChange={this.categoryHandler}
             >
               <option>Accessories</option>
@@ -87,31 +86,31 @@ export class SellForm extends Component {
               <option>Blu Ray Player</option>
             </select>
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <textarea
-              placeholder="Describe your item"
+              placeholder='Describe your item'
               onChange={this.descriptionHandler}
-              className="form-control"
+              className='form-control'
             />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <input
-              type="text"
-              placeholder="$"
+              type='text'
+              placeholder='$'
               onChange={this.priceSelectHandler}
-              className="form-control"
+              className='form-control'
             />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <input
-              type="file"
-              accept="image/*"
+              type='file'
+              accept='image/*'
               onChange={this.imageSelectHandler}
-              className="form-control"
+              className='form-control'
             />
           </div>
-          <div className="form-group">
-            <input type="submit" className="btn btn-dark btn-block" />
+          <div className='form-group'>
+            <input type='submit' className='btn btn-dark btn-block' />
           </div>
         </form>
       </div>
