@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import '../css/style.css'
 import axios from 'axios'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
-import {loginAction} from '../actions/userActions'
+import { loginAction } from '../actions/userActions'
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -28,10 +28,9 @@ class Login extends Component {
       password: this.state.password
     }
     try {
-      const data = await (await axios.post('/user/signup',
-        body)).data
+      const data = await (await axios.post('/user/login', body)).data
 
-      if(data.success) {
+      if (data.success) {
         // If backend gives {success: true} then we set store
         this.props.loginAction()
       }
@@ -79,9 +78,7 @@ class Login extends Component {
   }
 }
 
-
 export default connect(
   null,
   { loginAction }
 )(Login)
-
