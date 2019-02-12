@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import SmItem from './SmItem'
+import SmItem from './smItem'
 
 import { fetchItemsAction } from '../actions/itemActions'
 

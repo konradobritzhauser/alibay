@@ -19,11 +19,26 @@ router.post("/signup", (req, res) => {
   console.log("username", username);
   let password = req.body.password;
   console.log("password", password);
-  dbo.collection("user").insertOne(req.body, (err, result) => {
-    if (err) throw err;
-    console.log("success");
-  });
-  res.status(200).json({ message: "success" });
+
+  //check if username already exists
+  dbo.collection("user").find({username:username}).toArray((err,result)=>{
+    if(err) throw err
+    console.log("Checking if username exists")
+    if(result.length!==0){
+      console.log("existing result",result)
+      console.log("username already exists!!!")
+      res.status(200).json({success:false,message:"username already exists. please try another"})
+      return
+    }else{
+      dbo.collection("user").insertOne(req.body, (err, result) => {
+        if (err) throw err;
+        console.log("success");
+      });
+      res.status(200).json({ message: "success" });
+    }
+  }
+  )
+  
 });
 
 router.post("/login", (req, res) => {
@@ -38,8 +53,10 @@ router.post("/login", (req, res) => {
     .find({ username: username })
     .toArray((err, result) => {
       if (err) throw err;
+      
       console.log("result", result);
       try{
+        if(result[0].username===undefined){throw "username doesnt exist"}
         expectedPassword = result[0].password;
         console.log("expectedPassword", expectedPassword);
         console.log("success");
