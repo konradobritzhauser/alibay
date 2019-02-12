@@ -62,7 +62,7 @@ router.post("/login", (req, res) => {
         console.log("success");
       }catch{
         console.log("username doesn't exist")
-      res.status(200).json({success:false})
+      res.status(200).json({success:false,message:"username doesnt exist"})
       return
     }
       
