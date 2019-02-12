@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import SmItem from './smItem'
+import MdItem from './MdItem'
 
 import { fetchItemsAction } from '../actions/itemActions'
 
@@ -16,7 +16,7 @@ export class Items extends Component {
       let { items } = this.props
       // console.log('items from Items component ', items)
       if (items !== undefined) {
-        return items.map(item => <SmItem item={item} key={item._id} />)
+        return items.map(item => <MdItem item={item} key={item._id} />)
       }
     }
     return <div>{getItems()}</div>
