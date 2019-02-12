@@ -12,19 +12,21 @@ router.post("/addItem", (req, res) => {
 
   try {
     console.log("reqBody", reqBody);
+    let title = reqBody.title;
+    console.log("title", title);
+    let category = reqBody.category;
+    console.log("category", category);
     let description = reqBody.description;
     console.log("description", description);
-    let quantity = reqBody.quantity;
-    console.log("quantity", quantity);
-    let seller = reqBody.seller;
-    console.log("seller", seller);
-    let picture = reqBody.picture;
-    console.log("picture", picture);
     let price = reqBody.price;
     console.log("price", price);
+    let fd = reqBody.fd;
+    console.log("fd", fd);
     let likes = reqBody.likes;
     console.log("likes", likes);
-    let reqBodyArr = [description, quantity, seller, picture, price, likes];
+    let seller=reqBody.seller;
+    console.log('seller', seller)
+    let reqBodyArr = [title, category, description, price, fd, likes,seller];
     reqBodyArr.every(elem => {
         // console.log("elem",elem)
         // console.log(elem == undefined);

@@ -37,11 +37,12 @@ passwords dont match: `{ message: false }`
 ### Add item endpoint
 path:/items/addItem
 expects and object such as :
-   ` {description:"desc", `
-  `  quantity:123,      `
-   ` seller:"dennis",    `
-   ` picture:"url or whatever", `
+   ` {title:"desc", `
+  `  category:"book",      `
+   ` description:"whatever",    `
   `  price:333, `
- `  likes:20}    `
+  `  fd: "find out later",    `
+ `   likes:20,    `
+ `   seller:"dennis"}    `
 
  any information missing or empty strings from any of these properties will return an error and not add an item to the database
