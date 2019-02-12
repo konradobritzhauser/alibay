@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 export class MdItem extends Component {
-  render () {
+  render() {
     // console.log('item from MdItem ', this.props.item)
     const {
       _id,
@@ -15,15 +15,15 @@ export class MdItem extends Component {
       seller
     } = this.props.item
     return (
-      <div className='card center '>
+      <div className="card center ">
         <Link to={`/items/${_id}`}>
           Image will be here soon
           {/* <img width='50%' src={image} alt='pcs' /> */}
         </Link>
-        <div>
+        <div className="container">
           <div>{title}</div>
           <div>{description}</div>
-          <div>{price}</div>
+          <div>${price}</div>
           <div>{likes}</div>
           <div>{category}</div>
           <Link to={`/seller/${seller}`}> See a seller </Link>

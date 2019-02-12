@@ -6,11 +6,11 @@ import MdItem from './MdItem'
 import { fetchItemsAction } from '../actions/itemActions'
 
 export class Items extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchItemsAction()
   }
 
-  render () {
+  render() {
     const getItems = () => {
       // console.log('this.props.items', this.props.items)
       let { items } = this.props
@@ -19,7 +19,11 @@ export class Items extends Component {
         return items.map(item => <MdItem item={item} key={item._id} />)
       }
     }
-    return <div>{getItems()}</div>
+    return (
+      <div className="container mr-auto">
+        <div className="row flex-fill">{getItems()}</div>
+      </div>
+    )
   }
 }
 
