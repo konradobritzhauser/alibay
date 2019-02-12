@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-export class SmItem extends Component {
+export class MdItem extends Component {
   render () {
-    console.log('item from SmItem ', this.props.item)
+    console.log('item from MdItem ', this.props.item)
     const {
       _id,
       title,
@@ -33,4 +33,4 @@ export class SmItem extends Component {
   }
 }
 
-export default SmItem
+export default MdItem
