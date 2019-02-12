@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import '../css/style.css'
 import axios from 'axios'
 
+// TODO: Try to use icons from https://github.com/FortAwesome/react-fontawesome
+
 export class SellForm extends Component {
   constructor(props) {
     super(props)
