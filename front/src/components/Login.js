@@ -3,7 +3,7 @@ import '../css/style.css'
 import axios from 'axios'
 
 class Login extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       username: '',
@@ -15,59 +15,59 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleUsernameChange(event) {
+  handleUsernameChange (event) {
     this.setState({ username: event.target.value })
   }
 
-  handlePasswordChange(event) {
+  handlePasswordChange (event) {
     this.setState({ password: event.target.value })
   }
 
-  handleSubmit(event) {
+  handleSubmit (event) {
     event.preventDefault()
     let currentBody = {
       username: this.state.username,
       password: this.state.password
     }
-    axios('http://localhost:4000/user/login', {
+    axios('/user/login', {
       method: 'POST',
       body: JSON.stringify(currentBody)
     })
-      .then(function(x) {
+      .then(function (x) {
         return x.text()
       })
-      .then(function(responseBody) {
-        alert(responseBody)
+      .then(function (responseBody) {
+        window.alert(responseBody)
       })
   }
 
-  render() {
+  render () {
     return (
-      <div className="aligner">
-        <div className="login-form-modal">
+      <div className='aligner'>
+        <div className='login-form-modal'>
           <h2>Login</h2>
-          <span className="close-login">&times;</span>
-          <form onSubmit={this.handleSubmit} method="post">
-            <div className="form-group">
+          <span className='close-login'>&times;</span>
+          <form onSubmit={this.handleSubmit} method='post'>
+            <div className='form-group'>
               <input
-                type="text"
+                type='text'
                 onChange={this.handleUsernameChange}
-                className="form-control"
-                placeholder="Username"
-                required="required"
+                className='form-control'
+                placeholder='Username'
+                required='required'
               />
             </div>
-            <div className="form-group">
+            <div className='form-group'>
               <input
-                type="password"
+                type='password'
                 onChange={this.handlePasswordChange}
-                className="form-control"
-                placeholder="Password"
-                required="required"
+                className='form-control'
+                placeholder='Password'
+                required='required'
               />
             </div>
-            <div class="form-group">
-              <button type="submit" className="btn btn-dark btn-block">
+            <div className='form-group'>
+              <button type='submit' className='btn btn-dark btn-block'>
                 Login
               </button>
             </div>
