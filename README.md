@@ -68,7 +68,7 @@ expects an object such as :
 
  ### get Items
  
- method:get 
+ method:get  
  path:/items/getItems
  
 
