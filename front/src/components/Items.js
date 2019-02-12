@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+<<<<<<< Updated upstream
 import MdItem from './MdItem'
+=======
+import SmItem from './SmItem'
+>>>>>>> Stashed changes
 
 import { fetchItemsAction } from '../actions/itemActions'
 

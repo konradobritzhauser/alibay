@@ -26,9 +26,7 @@ class Login extends Component {
       password: this.state.password
     }
     try {
-      const data = await (await axios.post('/user/signup', {
-        body
-      })).data
+      const data = await (await axios.post('/user/login', body)).data
       console.log(data)
     } catch (err) {
       console.log('err', err)
