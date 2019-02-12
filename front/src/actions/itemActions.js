@@ -3,10 +3,10 @@ import axios from 'axios'
 
 export const fetchItemsAction = () => async dispatch => {
   try {
-    console.log('from fetchItemsAction from itemsActions')
-    // TODO: try to use short path. Will it work?
-    const data = await (await axios.get('http://localhost:4000/items/getItems')).data
-    console.log('axios data', data)
+    // console.log('from fetchItemsAction from itemsActions')
+    // DONE: try to use short path. Will it work?
+    const data = await (await axios.get('/items/getItems')).data
+    // console.log('axios data', data)
     dispatch({
       type: FETCH_ITEMS,
       payload: data.results
@@ -16,4 +16,4 @@ export const fetchItemsAction = () => async dispatch => {
   }
 }
 
-// TODO: AddItem should be transfered here
+// TODO: AddItem should be transfered here if we need it

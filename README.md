@@ -8,6 +8,7 @@
     - [Signup endpoint](#signup-endpoint)
     - [Login endpoint](#login-endpoint)
     - [Add item endpoint](#add-item-endpoint)
+    - [get Items](#get-items)
 
 <!-- /TOC -->
 
@@ -64,9 +65,9 @@ expects and object such as :
 
 ```JSON
 {
-  title:"desc",
-  category:"book",
-  description:"whatever",
+  "title": "desc",
+  "category": "book",
+  "description": "whatever",
   price:333,
   fd: "find out later",
   likes:20,
@@ -87,8 +88,9 @@ expects an object such as :
 >>>>>>> Stashed changes
 ```
 
- any information missing or empty strings from any of these properties will return an error and not add an item to the database
+any information missing or empty strings from any of these properties will return an error and not add an item to the database
 
+<<<<<<< Updated upstream
  ### remove item endpoint
  method:Post   
  path:/items/removeItem  
@@ -99,12 +101,21 @@ expects an object such as :
  ### get Items
  
  method:get 
+=======
+### get Items
+
+method:get  
+>>>>>>> Stashed changes
  path:/items/getItems
- 
+
 
  this returns an object. the property with the results is "results" and contains all the information about the object including id
 
 example response:
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 ```JSON
 {
     "results": [
