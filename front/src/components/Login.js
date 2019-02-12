@@ -9,36 +9,30 @@ class Login extends Component {
       username: '',
       password: ''
     }
-
-    this.handleUsernameChange = this.handleUsernameChange.bind(this)
-    this.handlePasswordChange = this.handlePasswordChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleUsernameChange(event) {
+  handleUsernameChange = event => {
     this.setState({ username: event.target.value })
   }
 
-  handlePasswordChange(event) {
+  handlePasswordChange = event => {
     this.setState({ password: event.target.value })
   }
 
-  handleSubmit(event) {
+  handleSubmit = async event => {
     event.preventDefault()
-    let currentBody = {
+    let body = {
       username: this.state.username,
       password: this.state.password
     }
-    axios('/user/login', {
-      method: 'POST',
-      body: JSON.stringify(currentBody)
-    })
-      .then(function(x) {
-        return x.text()
-      })
-      .then(function(responseBody) {
-        window.alert(responseBody)
-      })
+    try {
+      const data = await (await axios.post('/user/signup', {
+        body
+      })).data
+      console.log(data)
+    } catch (err) {
+      console.log('err', err)
+    }
   }
 
   render() {
@@ -66,7 +60,7 @@ class Login extends Component {
                 required="required"
               />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <input
                 type="submit"
                 className="btn btn-dark btn-block submit-button-login"

@@ -9,35 +9,30 @@ class Signup extends Component {
       username: '',
       password: ''
     }
-    this.handleUsernameChange = this.handleUsernameChange.bind(this)
-    this.handlePasswordChange = this.handlePasswordChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleUsernameChange(event) {
+  handleUsernameChange = event => {
     this.setState({ username: event.target.value })
   }
 
-  handlePasswordChange(event) {
+  handlePasswordChange = event => {
     this.setState({ password: event.target.value })
   }
 
-  handleSubmit(event) {
+  handleSubmit = async event => {
     event.preventDefault()
-    let currentBody = {
+    let body = {
       username: this.state.username,
       password: this.state.password
     }
-    axios('http://localhost:4000/user/signup', {
-      method: 'POST',
-      body: JSON.stringify(currentBody)
-    })
-      .then(function(x) {
-        return x.text()
-      })
-      .then(function(responseBody) {
-        alert(responseBody)
-      })
+    try {
+      const data = await (await axios.post('/user/signup', {
+        body
+      })).data
+      console.log(data)
+    } catch (err) {
+      console.log('err', err)
+    }
   }
 
   render() {

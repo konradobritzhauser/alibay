@@ -10,38 +10,50 @@ import Footer from './components/Footer'
 import Items from './components/Items'
 import SellForm from './components/SellForm'
 import Cart from './components/Cart'
+import Category from './components/Category'
 
 class App extends Component {
-  renderSignup () {
+  renderSignup() {
     return <Signup />
   }
 
-  renderLogin () {
+  renderLogin() {
     return <Login />
   }
 
-  renderItems () {
-    return <Items />
+  renderItems() {
+    return (
+      <div className="container-fluid d-flex h-100 flex-column bg-danger mh-100 category-item-holder">
+        <div className="row category-item-row">
+          <div className="bg-primary col-md-3 h-100 ">
+            <Category />
+          </div>
+          <div className="bg-success col-md-9 h-100">
+            <Items />
+          </div>
+        </div>
+      </div>
+    )
   }
 
-  renderSellForm () {
+  renderSellForm() {
     return <SellForm />
   }
 
-  renderCart () {
+  renderCart() {
     return <Cart />
   }
 
-  render () {
+  render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className="main-container">
           <Navbar />
-          <Route exact path='/signup' render={this.renderSignup} />
-          <Route exact path='/login' render={this.renderLogin} />
-          <Route exact path='/items' render={this.renderItems} />
-          <Route exact path='/sell-form' render={this.renderSellForm} />
-          <Route exact path='/cart' render={this.renderCart} />
+          <Route exact path="/signup" render={this.renderSignup} />
+          <Route exact path="/login" render={this.renderLogin} />
+          <Route exact path="/items" render={this.renderItems} />
+          <Route exact path="/sell-form" render={this.renderSellForm} />
+          <Route exact path="/cart" render={this.renderCart} />
           <Footer />
         </div>
       </BrowserRouter>

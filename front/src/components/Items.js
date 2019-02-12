@@ -6,31 +6,20 @@ import SmItem from './SmItem'
 import { fetchItemsAction } from '../actions/itemActions'
 
 export class Items extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchItemsAction()
   }
 
-  render () {
+  render() {
     const getItems = () => {
       // console.log('this.props.items', this.props.items)
       let { items } = this.props
       // console.log('items from Items component ', items)
       if (items !== undefined) {
-        return items.map(item =>
-          (
-            <SmItem
-              item={item}
-              key={item._id}
-            />
-          )
-        )
+        return items.map(item => <SmItem item={item} key={item._id} />)
       }
     }
-    return (
-      <div>
-        {getItems()}
-      </div>
-    )
+    return <div>{getItems()}</div>
   }
 }
 
@@ -39,4 +28,7 @@ const mapStateToProps = state => {
     items: state.items.items
   }
 }
-export default connect(mapStateToProps, { fetchItemsAction })(Items)
+export default connect(
+  mapStateToProps,
+  { fetchItemsAction }
+)(Items)
