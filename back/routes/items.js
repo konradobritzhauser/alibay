@@ -65,12 +65,20 @@ router.post("/findItemById",(req,res)=>{
     functionList.logEPTrigger(req.originalUrl);
     let id=req.id
     console.log('id', id)
-    dbo.collection("items").find({id:{$oid:"5c62170b72445f3950b0d593"}}).toArray((err,result)=>{
+    dbo.collection("items").find({}).toArray((err,result)=>{
         console.log("result",result)
         console.log(result[0]._id.toString())
     })
 })
 
+router.get("/getItems",(req,res)=>{
+  functionList.logEPTrigger(req.originalUrl);
+  dbo.collection("items").find({}).toArray((err,result)=>{
+    if(err) throw err;
+    console.log("result",result)
+    res.status(200).json({results:result,success:true})
+  })
+})
 
 
 module.exports = router;

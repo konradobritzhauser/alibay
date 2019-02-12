@@ -19,12 +19,14 @@
 ## Endpoints
 
 ### Signup endpoint
+method:post
 path:/user/signup
 Expects an object `{ username , password }` properties and their values.  
 ex:  
 `{ username: "dennis", password: "is cool" }`
 
 ### Login endpoint
+method:post
 path:/user/login
 Expects an object with username and password properties and their values.  
 ex:  
@@ -35,6 +37,7 @@ passwords match: `{ message: true }`
 passwords dont match: `{ message: false }`
 
 ### Add item endpoint
+method:Post
 path:/items/addItem
 expects and object such as :
    ` {title:"desc", `
@@ -46,3 +49,27 @@ expects and object such as :
  `   seller:"dennis"}    `
 
  any information missing or empty strings from any of these properties will return an error and not add an item to the database
+
+ ### get Items
+ method:get 
+ path:/items/getItems
+ 
+
+ this returns an object. the property with the results is "results" and contains all the information about the object including id
+
+example response:
+{
+    "results": [
+        {
+            "_id": "5c630b729b48804d3c12a7f0",
+            "title": "desc",
+            "category": "book",
+            "description": "whatever",
+            "price": 333,
+            "fd": "find out later",
+            "likes": 20,
+            "seller": "dennis"
+        }
+    ],
+    "success": true
+}
