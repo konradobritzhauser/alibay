@@ -28,8 +28,13 @@ class Login extends Component {
       password: this.state.password
     }
     try {
-      const data = await (await axios.post('/user/login', body)).data
-
+      const data = await (await axios({
+        method: 'post',
+        url: '/user/login', 
+        data: body,
+        credentials: 'include'
+      })).data
+      // console.log(data)
       if (data.success) {
         // If backend gives {success: true} then we set store
         this.props.loginAction()

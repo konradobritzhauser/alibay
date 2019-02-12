@@ -76,7 +76,8 @@ router.post("/login", (req, res) => {
         dbo.collection('sessions').insertOne(sessionsElem,(err,result)=>{
             if(err) throw err
             console.log("sessions element inserted into sessions collection")
-            res.set("Set-Cookie",""+sessionId)
+            res.cookie("__sid",`${sessionId}`)
+            // res.set('Set-Cookie', `_sss_=${sessionId}`)
             res.status(200).json({success:true,message:"logged in successfully"})
             return
         })
