@@ -5,6 +5,7 @@ let cors=require('cors')
 
 let testRoute=require('./routes/test')
 let signupRoute=require('./routes/user')
+let itemsRoute=require('./routes/items')
 
 let PORT=4000
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json())
 
 app.use('/test',testRoute)
 app.use('/user',signupRoute)
+app.use('/items',itemsRoute)
 
 app.listen(PORT,()=>{
     console.log("listening on port",PORT)

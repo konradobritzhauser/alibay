@@ -39,10 +39,18 @@ router.post("/login", (req, res) => {
     .toArray((err, result) => {
       if (err) throw err;
       console.log("result", result);
-      expectedPassword = result[0].password;
-      console.log("expectedPassword", expectedPassword);
-      console.log("success");
+      try{
+        expectedPassword = result[0].password;
+        console.log("expectedPassword", expectedPassword);
+        console.log("success");
+      }catch{
+        console.log("username doesn't exist")
+      res.status(200).json({success:false})
+      return
+    }
+      
 
+      
     if(expectedPassword===submittedPassword){
         console.log("passwords match")
         let sessionId=sessionIdGenerator();
@@ -53,10 +61,12 @@ router.post("/login", (req, res) => {
             console.log("sessions element inserted into sessions collection")
             res.set("Set-Cookie",""+sessionId)
             res.status(200).json({success:true})
+            return
         })
     }else{
         console.log("passwords dont match");
         res.status(200).json({success:false})
+        return
     }
 });
 });
