@@ -34,7 +34,7 @@ router.post("/signup", (req, res) => {
         if (err) throw err;
         console.log("success");
       });
-      res.status(200).json({ message: "success" });
+      res.status(200).json({ success:true,message: "Signed up successfully" });
     }
   }
   )
@@ -77,7 +77,7 @@ router.post("/login", (req, res) => {
             if(err) throw err
             console.log("sessions element inserted into sessions collection")
             res.set("Set-Cookie",""+sessionId)
-            res.status(200).json({success:true})
+            res.status(200).json({success:true,message:"logged in successfully"})
             return
         })
     }else{

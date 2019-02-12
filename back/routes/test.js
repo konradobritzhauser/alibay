@@ -7,7 +7,8 @@ let dbo
 
 setTimeout(()=>{
     dbo=getdbo()
-    console.log(dbo)},2000)
+    // console.log(dbo)
+},2000)
 
 
 router.post("/add",(req,res)=>{
