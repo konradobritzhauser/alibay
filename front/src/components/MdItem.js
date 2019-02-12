@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export class MdItem extends Component {
   render () {
-    console.log('item from MdItem ', this.props.item)
+    // console.log('item from MdItem ', this.props.item)
     const {
       _id,
       title,
