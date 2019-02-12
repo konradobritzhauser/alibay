@@ -1,3 +1,5 @@
+/*NAVBAR STYLES*/
+
 #navbar-search {
   width: 25em;
 }
@@ -5,6 +7,22 @@
 #search-button-nav {
   width: 7em;
 }
+
+.navbar-nav li {
+  color: white;
+}
+
+.cart {
+  height: 24px;
+  width: 24px;
+  background-image: url('../media/img/shopping-cart-gray.png');
+}
+
+.cart:hover {
+  background-image: url('../media/img/shopping-cart-white.png');
+}
+
+/*LOGIN FORM STYLES*/
 
 .login-form-modal {
   position: relative;
@@ -26,12 +44,18 @@
   cursor: pointer;
 }
 
-.aligner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+.submit-button-login {
+  background-color: #437fb9;
+  color: white;
+  border: 1px solid #437fb9;
 }
+
+.submit-button-login:hover {
+  background-color: #33618d;
+  color: white;
+}
+
+/*SIGNUP FORM STYLES*/
 
 .signup-form-modal {
   position: relative;
@@ -53,10 +77,59 @@
   cursor: pointer;
 }
 
+.submit-button-signup {
+  background-color: #437fb9;
+  color: white;
+  border: 1px solid #437fb9;
+}
+
+.submit-button-signup:hover {
+  background-color: #33618d;
+  color: white;
+}
+
+/*FOOTER STYLES*/
+
 .page-footer {
   position: fixed;
   height: 70px;
   bottom: 0;
   width: 100%;
   z-index: -9999;
+}
+
+/*SELL FORM STYLES*/
+
+#sellform-main {
+  position: relative;
+  top: 8vh;
+  width: 500px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.form-text-area {
+  resize: none;
+}
+
+.sell-price {
+  width: 48%;
+  height: 45px;
+}
+
+.sell-img-upload {
+  width: 48%;
+  height: 45px;
+  margin-bottom: 15px;
+}
+
+.button-sell-form {
+  background-color: #437fb9;
+  color: white;
+  border: 1px solid #437fb9;
+}
+
+.button-sell-form:hover {
+  background-color: #33618d;
+  color: white;
 }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import '../css/style.css'
 import axios from 'axios'
 
 export class SellForm extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       title: '',
@@ -11,65 +12,67 @@ export class SellForm extends Component {
       price: '',
       image: ''
     }
-    this.titleHandler = this.titleHandler.bind(this)
-    this.categoryHandler = this.categoryHandler.bind(this)
-    this.descriptionHandler = this.descriptionHandler.bind(this)
-    this.priceSelectHandler = this.priceSelectHandler.bind(this)
-    this.imageSelectHandler = this.imageSelectHandler.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  titleHandler = (event) => {
+  titleHandler = event => {
     this.setState({ title: event.target.value })
   }
 
-  categoryHandler (event) {
+  categoryHandler = event => {
     this.setState({ category: event.target.value })
   }
 
-  descriptionHandler (event) {
+  descriptionHandler = event => {
     this.setState({ description: event.target.value })
   }
 
-  priceSelectHandler (event) {
+  priceSelectHandler = event => {
     this.setState({ price: event.target.value })
   }
 
-  imageSelectHandler (event) {
+  imageSelectHandler = event => {
     this.setState({ image: event.target.files[0] })
+    console.log(event.target.files[0])
   }
 
-  handleSubmit (event) {
+  handleSubmit = event => {
     event.preventDefault()
-    let {title, category, description, price, image} = this.state
+    const fd = new FormData()
+    // console.log('name:' + this.state.image.name)
+    fd.append('image', this.state.image, this.state.image.name)
+    // console.log(fd)
+    let { title, category, description, price } = this.state
     let body = {
       title,
       category,
       description,
       price,
-      image
+      fd
     }
-    axios.post('/user/sell-form', { body })
-      .then(res=> console.log('res', res))
+    // for (var entry of fd.entries()) {
+    //   console.log(entry[0] + ', ' + entry[1] + ', ' + entry[2])
+    // }
+    axios.post('/items/additem', { body }).then(res => console.log('res', res))
   }
 
-  render () {
+  render() {
     return (
-      <div>
+      <div id="sellform-main">
         <form onSubmit={this.handleSubmit}>
-          <div className='form-group'>
+          <h2>Sell your item</h2>
+          <div className="form-group">
             <input
-              type='text'
-              placeholder='Title'
+              type="text"
+              placeholder="Title"
               onChange={this.titleHandler}
-              className='form-control'
+              className="form-control"
             />
           </div>
-          <div className='form-group'>
-            <label for='category'>Select one:</label>
+          <div className="form-group">
+            <label htmlFor="category">Select one:</label>
             <select
-              className='form-control'
-              id='category'
+              className="form-control"
+              id="category"
               onChange={this.categoryHandler}
             >
               <option>Accessories</option>
@@ -86,31 +89,32 @@ export class SellForm extends Component {
               <option>Blu Ray Player</option>
             </select>
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <textarea
-              placeholder='Describe your item'
+              placeholder="Describe your item"
               onChange={this.descriptionHandler}
-              className='form-control'
+              className="form-control form-text-area"
             />
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <input
-              type='text'
-              placeholder='$'
+              type="text"
+              placeholder="$"
               onChange={this.priceSelectHandler}
-              className='form-control'
+              className="form-control sell-price float-left"
             />
-          </div>
-          <div className='form-group'>
             <input
-              type='file'
-              accept='image/*'
+              type="file"
+              accept="image/*"
               onChange={this.imageSelectHandler}
-              className='form-control'
+              className="form-control sell-img-upload float-right"
             />
           </div>
-          <div className='form-group'>
-            <input type='submit' className='btn btn-dark btn-block' />
+          <div className="form-group">
+            <input
+              type="submit"
+              className="btn btn-dark btn-block button-sell-form"
+            />
           </div>
         </form>
       </div>

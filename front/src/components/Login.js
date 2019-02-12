@@ -69,7 +69,7 @@ class Login extends Component {
             <div class="form-group">
               <input
                 type="submit"
-                className="btn btn-dark btn-block"
+                className="btn btn-dark btn-block submit-button-login"
                 value="Login"
               />
             </div>

@@ -58,7 +58,7 @@ class Navbar extends Component {
 
               <li className="nav-item">
                 <Link to="/cart" className="nav-link">
-                  My Cart
+                  <div className="cart" />
                 </Link>
               </li>
             </ul>
