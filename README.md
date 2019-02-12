@@ -20,26 +20,43 @@
 ## Endpoints
 
 ### Signup endpoint
+<<<<<<< Updated upstream
 
 method:post
 path:/user/signup
+=======
+method:post  
+path:/user/signup  
+>>>>>>> Stashed changes
 Expects an object `{ username , password }` properties and their values.  
 ex:  
-`{ username: "dennis", password: "is cool" }`
+
+        `{ username: "dennis", password: "is cool" }`
 
 ### Login endpoint
+<<<<<<< Updated upstream
 
 method:post
 path:/user/login
+=======
+method:post  
+path:/user/login  
+>>>>>>> Stashed changes
 Expects an object with username and password properties and their values.  
-ex:  
-`{ username: "dennis", password: "is cool" }`  
+example:  
+
+        `{ username: "dennis", password: "is cool" }`  
 It will return set a cookie equal to the session Id and send back an object with property success.  
 ex:  
-passwords match: `{ message: true }`  
-passwords dont match: `{ message: false }`
+passwords match:  
+
+        `{ message: true }`  
+passwords dont match: 
+
+        `{ message: false }`
 
 ### Add item endpoint
+<<<<<<< Updated upstream
 
 method:Post
 path:/items/addItem
@@ -55,9 +72,29 @@ expects and object such as :
   likes:20,
   seller:"dennis"
 }
+=======
+method:Post  
+path:/items/addItem  
+expects an object such as :  
+```JSON
+   {title:"desc", 
+    category:"book",      
+    description:"whatever",   
+    price:333, 
+    fd: "find out later",    
+    likes:20,    
+    seller:"dennis"}    
+>>>>>>> Stashed changes
 ```
 
  any information missing or empty strings from any of these properties will return an error and not add an item to the database
+
+ ### remove item endpoint
+ method:Post   
+ path:/items/removeItem  
+ expect an object such as:   
+ 
+        {itemId:"123124129"} 
 
  ### get Items
  
@@ -68,6 +105,7 @@ expects and object such as :
  this returns an object. the property with the results is "results" and contains all the information about the object including id
 
 example response:
+```JSON
 {
     "results": [
         {
@@ -83,3 +121,4 @@ example response:
     ],
     "success": true
 }
+```
