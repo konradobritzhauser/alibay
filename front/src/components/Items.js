@@ -6,11 +6,11 @@ import SmItem from './smItem'
 import { fetchItemsAction } from '../actions/itemActions'
 
 export class Items extends Component {
-  componentDidMount() {
+  componentDidMount () {
     this.props.fetchItemsAction()
   }
 
-  render() {
+  render () {
     const getItems = () => {
       // console.log('this.props.items', this.props.items)
       let { items } = this.props
