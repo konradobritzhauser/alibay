@@ -7,6 +7,7 @@
   - [Endpoints](#endpoints)
     - [Signup endpoint](#signup-endpoint)
     - [Login endpoint](#login-endpoint)
+    - [Add item endpoint](#add-item-endpoint)
 
 <!-- /TOC -->
 
@@ -19,6 +20,7 @@
 ## Endpoints
 
 ### Signup endpoint
+
 method:post
 path:/user/signup
 Expects an object `{ username , password }` properties and their values.  
@@ -26,6 +28,7 @@ ex:
 `{ username: "dennis", password: "is cool" }`
 
 ### Login endpoint
+
 method:post
 path:/user/login
 Expects an object with username and password properties and their values.  
@@ -37,20 +40,27 @@ passwords match: `{ message: true }`
 passwords dont match: `{ message: false }`
 
 ### Add item endpoint
+
 method:Post
 path:/items/addItem
 expects and object such as :
-   ` {title:"desc", `
-  `  category:"book",      `
-   ` description:"whatever",    `
-  `  price:333, `
-  `  fd: "find out later",    `
- `   likes:20,    `
- `   seller:"dennis"}    `
+
+```JSON
+{
+  title:"desc",
+  category:"book",
+  description:"whatever",
+  price:333,
+  fd: "find out later",
+  likes:20,
+  seller:"dennis"
+}
+```
 
  any information missing or empty strings from any of these properties will return an error and not add an item to the database
 
  ### get Items
+ 
  method:get 
  path:/items/getItems
  
