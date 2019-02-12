@@ -2,6 +2,8 @@ let express = require("express");
 let router = express.Router();
 let functionList = require("../functions");
 let getdbo = require("../mongo-dbo-function");
+let ObjectID = require('mongodb').ObjectID
+
 
 let dbo;
 setTimeout(() => (dbo = getdbo()), 2000);
@@ -55,12 +57,15 @@ router.post("/removeItem", (req, res) => {
   console.log("reqBody", reqBody);
   let itemId = reqBody.itemId;
   console.log("itemId", itemId);
-  dbo.collection("items").deleteOne({ id: itemId }, (err, result) => {
+
+  dbo.collection("items").deleteOne({ _id:ObjectID(itemId)  }, (err, result) => {
     if (err) throw err;
-    console.log(result)
+    res.status(200).json({success:true,message:'deleted item with id:'+itemId})
   });
+
+  
 });
-// make a function to 
+// useless endpoint
 router.post("/findItemById",(req,res)=>{
     functionList.logEPTrigger(req.originalUrl);
     let id=req.id

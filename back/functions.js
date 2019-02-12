@@ -6,7 +6,7 @@ let functionsList={
         return urlArray[0]
     },
     logEPTrigger:function(originalUrl){
-        console.log("triggered function")
+        
         console.log("\n-------------------------------\ntriggered endpoint:",functionsList.getUrl(originalUrl))
     }
 }
