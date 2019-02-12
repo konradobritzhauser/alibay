@@ -57,12 +57,12 @@ router.post("/removeItem", (req, res) => {
     console.log(result)
   });
 });
-
+// make a function to 
 router.post("/findItemById",(req,res)=>{
     functionList.logEPTrigger(req.originalUrl);
     let id=req.id
     console.log('id', id)
-    dbo.collection("items").find({id:"5c62170b72445f3950b0d593"}).toArray((err,result)=>{
+    dbo.collection("items").find({id:{$oid:"5c62170b72445f3950b0d593"}}).toArray((err,result)=>{
         console.log("result",result)
         console.log(result[0]._id.toString())
     })
