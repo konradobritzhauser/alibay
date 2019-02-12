@@ -17,7 +17,7 @@ let url = `mongodb://${dbUsername}:${dbPassword}@ds131905.mlab.com:31905/alibay`
 // }
 
 let dbo;
-MongoClient.connect(url,{useNewUrl:true},(err,db)=>{
+MongoClient.connect(url,{useNewUrlParser:true},(err,db)=>{
     if(err) throw err
     dbo=db.db('alibay')
 })
