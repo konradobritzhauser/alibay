@@ -10,7 +10,8 @@ let storage = multer.diskStorage({
     cb(null, './back/aaa')
   },
   filename: function (req, file, cb) {
-    cb(null, 'test' + '.jpg')
+    console.log("filename body",(req.body))
+    cb(null, req.body.id + '.jpg')
   }
 })
 
@@ -20,9 +21,7 @@ router.post('/upload', upload.single('image'), function (req, res, next) {
   functionList.logEPTrigger(req.originalUrl)
   console.log('file', req.file)
   let filename = req.file.filename
-  console.log('filename', filename)
-  let uploadStatus = 'file uploaded successfully'
-  console.log('req.body', req.body)
+  console.log('req.body.id', req.body.id)
   // req.file is the image file
   // req.body holds text fields
   res.status(200).json({ success: true })
