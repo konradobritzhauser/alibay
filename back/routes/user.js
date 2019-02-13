@@ -32,7 +32,14 @@ router.post("/signup", (req, res) => {
     }else{
       dbo.collection("user").insertOne(req.body, (err, result) => {
         if (err) throw err;
-        console.log("success");
+        console.log("user created and in db");
+        //add user cart to cart collection
+        let dbObject={}
+        dbObject.username=username
+        dbObject.cart=[]
+        dbo.collection("carts").insertOne(dbObject,(err,result)=>{
+          console.log("cart created and in db")
+        })
       });
       res.status(200).json({ success:true,message: "Signed up successfully" });
     }

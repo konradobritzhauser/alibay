@@ -7,6 +7,7 @@ let multer = require('multer')
 let testRoute = require('./routes/test')
 let signupRoute = require('./routes/user')
 let itemsRoute = require('./routes/items')
+let cartRoute= require('./routes/cart')
 
 let PORT = 4000
 
@@ -28,6 +29,7 @@ app.use(bodyParser.json())
 app.use('/test', testRoute)
 app.use('/user', signupRoute)
 app.use('/items', itemsRoute)
+app.use('/cart',cartRoute)
 
 app.listen(PORT, () => {
   console.log('listening on port', PORT)

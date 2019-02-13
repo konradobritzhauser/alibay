@@ -5,6 +5,9 @@ let getdbo = require('../mongo-dbo-function')
 let ObjectID = require('mongodb').ObjectID
 let multer = require('multer')
 
+let dbo
+setTimeout(() => (dbo = getdbo()), 2000)
+
 let storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './back/aaa')
@@ -27,8 +30,7 @@ router.post('/upload', upload.single('image'), function (req, res, next) {
   res.status(200).json({ success: true })
 })
 
-let dbo
-setTimeout(() => (dbo = getdbo()), 2000)
+
 
 router.post('/addItem', (req, res) => {
   functionList.logEPTrigger(req.originalUrl)
