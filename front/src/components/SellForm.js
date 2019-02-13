@@ -39,32 +39,39 @@ export class SellForm extends Component {
 
   handleSubmit = async event => {
     event.preventDefault()
-    let seller = 'dennis'
-    let likes = 0
+    // let seller = 'dennis'
+    // let likes = 0
     const fd = new FormData()
     // console.log('name:' + this.state.image.name)
+    // debugger
     fd.append('image', this.state.image, this.state.image.name)
     // console.log(fd)
     let { title, category, description, price } = this.state
-    let body = {
-      title,
-      category,
-      description,
-      price,
-      seller,
-      likes,
-      fd
+    fd.append('title', title)
+
+    for(let pair of fd.entries()) {
+      console.log(pair[0]+ ', '+ pair[1]); 
     }
+    // console.log('fd --->>>', fd.entries())
+    // let body = {
+    //   // title,
+    //   // category,
+    //   // description,
+    //   // price,
+    //   // seller,
+    //   // likes,
+    //   fd
+    // }
     // for (var entry of fd.entries()) {
     //   console.log(entry[0] + ', ' + entry[1] + ', ' + entry[2])
     // }
-    console.log('body', body)
+    console.log('body is --->', fd)
 
     let data = (await axios({
       method: 'post',
-      url: '/items/additem',
-      data: body })).data
-      console.log('data', data)
+      url: '/upload',
+      data: fd })).data
+      // console.log('data', fd)
   }
 
   render() {
