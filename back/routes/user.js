@@ -83,7 +83,7 @@ router.post("/login", (req, res) => {
         })
     }else{
         console.log("passwords dont match");
-        res.status(200).json({success:false})
+        res.status(200).json({success:false,message:"passwords dont match"})
         return
     }
 });

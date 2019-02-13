@@ -3,6 +3,27 @@ let router = express.Router()
 let functionList = require('../functions')
 let getdbo = require('../mongo-dbo-function')
 let ObjectID = require('mongodb').ObjectID
+let multer=require('multer');
+
+let storage=multer.diskStorage({
+  destination:function(req,file,cb){
+    cb(null,'../aaa')
+  },
+  filename:function(req,file,cb){
+    cb(null,file.fieldname+'-'+Date.now())
+  }
+})
+
+let upload=multer({dest:"../aaa"})
+
+router.post('/upload',upload.single('avatar'),function(req,res,next){
+  functionList.logEPTrigger(req.originalUrl)
+  console.log(req)
+  // console.log("req.body",req.body)
+  //req.file is the image file
+  //req.body holds text fields
+  
+})
 
 let dbo
 setTimeout(() => (dbo = getdbo()), 2000)
