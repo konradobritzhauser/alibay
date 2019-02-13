@@ -7,21 +7,25 @@ let multer=require('multer');
 
 let storage=multer.diskStorage({
   destination:function(req,file,cb){
-    cb(null,'../aaa')
+    cb(null,"./back/aaa")
   },
   filename:function(req,file,cb){
-    cb(null,file.fieldname+'-'+Date.now())
+    cb(null,"test"+".jpg")
   }
 })
 
-let upload=multer({dest:"../aaa"})
+let upload=multer({storage:storage})
 
-router.post('/upload',upload.single('avatar'),function(req,res,next){
+router.post('/upload',upload.single('image'),function(req,res,next){
   functionList.logEPTrigger(req.originalUrl)
-  console.log(req)
-  // console.log("req.body",req.body)
+  console.log("file",req.file)
+  let filename=req.file.filename
+  console.log("filename",filename)
+  let uploadStatus='file uploaded successfully'
+  console.log("req.body",req.body)
   //req.file is the image file
   //req.body holds text fields
+  res.status(200).json({success:true})
   
 })
 
