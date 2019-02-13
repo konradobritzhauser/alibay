@@ -14,7 +14,7 @@ export class Items extends Component {
     const getItems = () => {
       // console.log('this.props.items', this.props.items)
       let { items } = this.props
-      // console.log('items from Items component ', items)
+      console.log('items from Items component ', items)
       if (items !== undefined) {
         return items.map(item => <MdItem item={item} key={item._id} />)
       }

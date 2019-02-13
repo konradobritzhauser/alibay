@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 export class MdItem extends Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
     // console.log('item from MdItem ', this.props.item)
     const {
@@ -14,6 +17,7 @@ export class MdItem extends Component {
       likes,
       seller
     } = this.props.item
+    console.log(this.props.item._id)
     return (
       <div className="card center ">
         <Link to={`/items/${_id}`}>
@@ -22,11 +26,7 @@ export class MdItem extends Component {
         </Link>
         <div className="container">
           <div>{title}</div>
-          <div>{description}</div>
           <div>${price}</div>
-          <div>{likes}</div>
-          <div>{category}</div>
-          <Link to={`/seller/${seller}`}> See a seller </Link>
         </div>
       </div>
     )

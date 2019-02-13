@@ -11,14 +11,29 @@ import Items from './components/Items'
 import SellForm from './components/SellForm'
 import Cart from './components/Cart'
 import Category from './components/Category'
+import ItemPage from './components/ItemPage'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      id: ''
+    }
+  }
   renderSignup() {
     return <Signup />
   }
 
   renderLogin() {
     return <Login />
+  }
+
+  updateId(event) {
+    return () => {
+      this.setState({
+        id: event.target.value
+      })
+    }
   }
 
   renderItems() {
@@ -44,6 +59,10 @@ class App extends Component {
     return <Cart />
   }
 
+  renderDetails(routerData) {
+    return <ItemPage itemId={routerData.match.params.id} />
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -52,6 +71,7 @@ class App extends Component {
           <Route exact path="/signup" render={this.renderSignup} />
           <Route exact path="/login" render={this.renderLogin} />
           <Route exact path="/items" render={this.renderItems} />
+          <Route exact path="/items/:id" render={this.renderDetails} />
           <Route exact path="/sell-form" render={this.renderSellForm} />
           <Route exact path="/cart" render={this.renderCart} />
           <Footer />
