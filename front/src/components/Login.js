@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../css/style.css'
 import axios from 'axios'
 import { connect } from 'react-redux'
-
+import { withRouter } from 'react-router'
 import { loginAction } from '../actions/userActions'
 class Login extends Component {
   constructor(props) {
@@ -37,6 +37,7 @@ class Login extends Component {
       // console.log(data)
       if (data.success) {
         // If backend gives {success: true} then we set store
+        this.props.history.push('/items')
         this.props.loginAction()
       }
     } catch (err) {
@@ -86,4 +87,4 @@ class Login extends Component {
 export default connect(
   null,
   { loginAction }
-)(Login)
+)(withRouter(Login))

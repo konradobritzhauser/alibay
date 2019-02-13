@@ -37,8 +37,10 @@ export class SellForm extends Component {
     console.log(event.target.files[0])
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault()
+    let seller = 'dennis'
+    let likes = 0
     const fd = new FormData()
     // console.log('name:' + this.state.image.name)
     fd.append('image', this.state.image, this.state.image.name)
@@ -49,12 +51,20 @@ export class SellForm extends Component {
       category,
       description,
       price,
+      seller,
+      likes,
       fd
     }
     // for (var entry of fd.entries()) {
     //   console.log(entry[0] + ', ' + entry[1] + ', ' + entry[2])
     // }
-    axios.post('/items/additem', { body }).then(res => console.log('res', res))
+    console.log('body', body)
+
+    let data = (await axios({
+      method: 'post',
+      url: '/items/additem',
+      data: body })).data
+      console.log('data', data)
   }
 
   render() {

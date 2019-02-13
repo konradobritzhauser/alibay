@@ -44,12 +44,14 @@ passwords dont match:
         `{ message: false }`
 
 ### Add item endpoint
+
 method:Post  
 path:/items/addItem  
 expects an object such as :  
+
 ```JSON
-   {"title":"desc", 
-    "category":"book",      
+   {"title":"desc",
+    "category":"book",
     "description":"whatever",   
     "price":333, 
     "fd": "find out later",    
