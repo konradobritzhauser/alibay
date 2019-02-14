@@ -24,10 +24,23 @@ class Login extends Component {
 
   handleSubmit = async event => {
     event.preventDefault()
+
+    //  // Get cookie by name of id of cookie if we need it
+    //  const getCookie = (name) => {
+    //   let cookie = {}
+    //   document.cookie.split(';').forEach(function (el) {
+    //     let [k, v] = el.split('=')
+    //     cookie[k.trim()] = v
+    //   })
+    //   console.log(cookie, cookie[name])
+    //   return cookie[name]
+    // }
+
     let body = {
       username: this.state.username,
       password: this.state.password
     }
+    
     try {
       const data = await (await axios({
         method: 'post',

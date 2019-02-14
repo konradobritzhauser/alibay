@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import { withRouter } from 'react-router'
 import '../css/style.css'
 import axios from 'axios'
+
+import { loginAction } from '../actions/userActions'
 
 class Signup extends Component {
   constructor(props) {
@@ -27,7 +31,13 @@ class Signup extends Component {
     }
     try {
       const data = await (await axios.post('/user/signup', body)).data
-      console.log(data)
+      console.log('data', data)
+      if (data.success) {
+        console.log('data.success', data.success)
+        // If backend gives {success: true} then we set store
+        this.props.history.push('/items')
+        this.props.loginAction()
+      }
     } catch (err) {
       console.log('err', err)
     }
@@ -72,4 +82,7 @@ class Signup extends Component {
   }
 }
 
-export default Signup
+export default connect(
+  null,
+  { loginAction }
+)(withRouter(Signup))
