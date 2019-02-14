@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import { fetchItemsAction } from '../actions/itemActions'
 
 export class unConnectedCart extends Component {
   constructor(props){
@@ -8,34 +9,53 @@ export class unConnectedCart extends Component {
     this.displayCartItems=this.displayCartItems.bind(this)
   }
   componentDidMount(){
-    // console.log("props",this.props)
+
+    // const data = await (await axios({
+    //     method: 'post',
+    //     url: '/user/login', 
+    //     data: body,
+    //     credentials: 'include'
+    //   })).data
+    // this.props.fetchItemsAction()
+    console.log("props",this.props)
+    let that=this
     let props=this.props
-      axios.post("cart/getCart",
-      {username:"konrad"}
+    console.log('document.cookie is',document.cookie)
+    // let body={username:"konrad"}
+      axios(
+      {method:'post',url:'/cart/getCart',credentials:'include'}
       ).then(function(response){
     // console.log("props",props)
-
         // console.log(response)
         let results=response.data.results
-        console.log('results', results)
+        console.log('resultsId', results)
         props.dispatch({type:"GET_CART",payload:results})
+        that.setState({itemsById:results})
+        that.setState({allItems:props.items})
       })
   }
 
   displayCartItems(){
-    let cartArr=this.props.cart.cart
-    console.log("cartArr",cartArr)
+    let cartIdArr=this.props.cart.items
+    console.log("cartIdArr",cartIdArr)
     
     function displayItem(elem){
       return <div>{elem}</div>
     }
     
+
     try{
-      return cartArr.map(displayItem)
+      return cartIdArr.map(displayItem)
     }catch(e){}
     
     
   }
+  // clearCart(){
+  //   axios.post("/cart/clearCart",
+    
+  //   )
+  // }
+
   render () {
     
     return (
@@ -51,7 +71,8 @@ export class unConnectedCart extends Component {
 
 let mapStateToProps=function(state){
   return{
-    cart:state.cart
+    cart:state.cart,
+    items:state.items
   }
 } 
 

@@ -67,7 +67,17 @@ router.post("/removeItem", (req, res) => {
 //expects object such as {"username":"konrad"}
 router.post("/getCart", (req, res) => {
   functionList.logEPTrigger(req.originalUrl);
-  let username = req.body.username;
+  let cookieSessionId=req.cookies.__sid
+  console.log("cookie as string",cookieSessionId)
+  let numberCookieSessionId=parseInt(cookieSessionId,10)
+  console.log(typeof numberCookieSessionId)
+  console.log("cookie as number",numberCookieSessionId)
+  //IMPORTANT: query for cookie must be as number, NOT a string
+  dbo.collection('sessions').find({sessionId:numberCookieSessionId}).toArray((err,result)=>{
+    
+ 
+  console.log("sessions",result)
+  let username = result[0].username;
   console.log("username", username);
   dbo
     .collection("carts")
@@ -90,6 +100,7 @@ router.post("/getCart", (req, res) => {
           .json({ success: true, message: "cart retrieved", results: cart });
       }
     });
+  })
 });
 //result returns an array with all the id numbers of all the objects
 

@@ -10,7 +10,7 @@ export default (state = initialState, { type, payload }) => {
   if(type===GET_CART){
       return{
         ...state,
-        cart:payload
+        items:payload
       }
   }else{
     return state
