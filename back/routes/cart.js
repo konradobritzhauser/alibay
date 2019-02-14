@@ -100,6 +100,8 @@ router.post("/getCart", (req, res) => {
     .find({ sessionId: sessionId })
     .toArray((err, result) => {
       console.log("sessions", result);
+
+      try{
       let username = result[0].username;
       console.log("username", username);
       dbo
@@ -125,7 +127,9 @@ router.post("/getCart", (req, res) => {
               });
           }
         });
+      }catch{res.status(200).json({success:false,message:"error"})}
     });
+    
 });
 //result returns an array with all the id numbers of all the objects
 
