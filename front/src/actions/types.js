@@ -1,4 +1,7 @@
 export const LOGGEDIN = 'LOGGEDIN'
 export const FETCH_ITEMS = 'FETCH_ITEMS'
 export const ITEM_ADDED_TO_CART = 'ITEM_ADDED_TO_CART'
+export const ITEM_REMOVED_FROM_CART="ITEM_REMOVED_FROM_CART"
 export const CART_CHECK_OUT = 'CART_CHECK_OUT'
+export const GET_CART='GET_CART'
+
