@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import '../css/style.css'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 // import { Route, BrowserRouter, Link } from 'react-router-dom'
 
@@ -52,6 +54,19 @@ class ItemPage extends Component {
     // return flat[0]
   }
 
+  addItemCart = event => {
+    event.preventDefault()
+    let body = {
+      username: this.state.newArr.seller,
+      itemId: this.state.newArr._id
+    }
+    try {
+      axios.post('/cart/addItem', body)
+    } catch (err) {
+      console.log('err', err)
+    }
+  }
+
   render() {
     let category = this.state.newArr.category
     let desc = this.state.newArr.description
@@ -73,9 +88,14 @@ class ItemPage extends Component {
               <h5>{title}</h5>
               <div>{desc}</div>
               <div className="buy-price">${price}</div>
-              <button className="btn btn-dark btn-block submit-button-signup button-add-cart">
-                Add To Cart
-              </button>
+              <Link to="/cart">
+                <button
+                  className="btn btn-dark btn-block submit-button-signup button-add-cart"
+                  onClick={this.addItemCart}
+                >
+                  Add To Cart
+                </button>
+              </Link>
             </div>
           </div>
         </div>

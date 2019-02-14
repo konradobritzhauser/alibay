@@ -4,6 +4,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { loginAction } from '../actions/userActions'
+
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -30,7 +31,7 @@ class Login extends Component {
     try {
       const data = await (await axios({
         method: 'post',
-        url: '/user/login', 
+        url: '/user/login',
         data: body,
         credentials: 'include'
       })).data

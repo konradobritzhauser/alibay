@@ -10,7 +10,7 @@ class Navbar extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <Link to="/" className="navbar-brand">
+          <Link to="/items" className="navbar-brand">
             Alibay
           </Link>
 

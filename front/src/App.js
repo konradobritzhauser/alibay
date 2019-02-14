@@ -38,12 +38,12 @@ class App extends Component {
 
   renderItems() {
     return (
-      <div className="container-fluid d-flex h-100 flex-column bg-danger mh-100 category-item-holder">
+      <div className="container-fluid d-flex h-100 flex-column mh-100 category-item-holder">
         <div className="row category-item-row">
-          <div className="bg-primary col-md-3 h-100 ">
+          <div className="bg-primary col-md-3 category-holder">
             <Category />
           </div>
-          <div className="bg-success col-md-9 h-100 item-holder">
+          <div className="col-md-9 h-100 item-holder">
             <Items />
           </div>
         </div>
