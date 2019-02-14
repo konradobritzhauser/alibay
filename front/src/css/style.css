@@ -1,9 +1,13 @@
 html {
-  height: 100%;
+  height: 100vh;
 }
 
+/* #root {
+  height: 90vh;
+} */
+
 .main-container {
-  height: 100%;
+  height: 80vh;
 }
 
 /*NAVBAR STYLES*/
@@ -155,8 +159,57 @@ html {
 .category-item-row {
   flex: 1;
 }
+
+.item-holder {
+  margin: 0 auto;
+  overflow-y: auto;
+  text-align: center;
+  padding-top: 40px;
+  padding-left: 40px;
+}
 /*SELL FORM STYLES*/
 
 /* .categories-main {
   background-color: red;
 } */
+
+/*ITEM PAGE*/
+.container-item-page {
+  width: 50%;
+  height: 60vh;
+  display: flex;
+  margin-top: 40px;
+  flex-direction: column;
+  flex: 1;
+}
+
+.button-add-cart {
+  width: 150px;
+  margin-top: 15px;
+}
+.buy-photo {
+  margin-top: 70px;
+  background-color: red;
+  height: 200px;
+  width: 280px;
+  text-align: center;
+  line-height: 200px;
+}
+
+.buy-price {
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.left-column-buy {
+  height: 347px;
+}
+
+.right-column-buy {
+  height: 347px;
+}
+
+.right-column-inside {
+  margin-top: 70px;
+  height: 200px;
+}

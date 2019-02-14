@@ -49,8 +49,8 @@ export class SellForm extends Component {
     let { title, category, description, price } = this.state
     fd.append('title', title)
 
-    for(let pair of fd.entries()) {
-      console.log(pair[0]+ ', '+ pair[1]); 
+    for (let pair of fd.entries()) {
+      console.log(pair[0] + ', ' + pair[1])
     }
     // console.log('fd --->>>', fd.entries())
     // let body = {
@@ -70,8 +70,9 @@ export class SellForm extends Component {
     let data = (await axios({
       method: 'post',
       url: '/upload',
-      data: fd })).data
-      // console.log('data', fd)
+      data: fd
+    })).data
+    // console.log('data', fd)
   }
 
   render() {

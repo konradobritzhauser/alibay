@@ -43,7 +43,7 @@ class App extends Component {
           <div className="bg-primary col-md-3 h-100 ">
             <Category />
           </div>
-          <div className="bg-success col-md-9 h-100">
+          <div className="bg-success col-md-9 h-100 item-holder">
             <Items />
           </div>
         </div>
@@ -59,8 +59,8 @@ class App extends Component {
     return <Cart />
   }
 
-  renderDetails(routerData) {
-    return <ItemPage itemId={routerData.match.params.id} />
+  renderDetails() {
+    return <ItemPage />
   }
 
   render() {

@@ -21,7 +21,7 @@ export class Items extends Component {
     }
     return (
       <div className="container mr-auto">
-        <div className="row flex-fill">{getItems()}</div>
+        <div className="row">{getItems()}</div>
       </div>
     )
   }

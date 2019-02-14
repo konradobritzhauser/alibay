@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import '../css/style.css'
 
 // import { Route, BrowserRouter, Link } from 'react-router-dom'
 
@@ -7,59 +7,79 @@ class ItemPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      itemsArr: []
+      itemsArr: [],
+      newArr: []
     }
   }
 
-  render() {
-    const self = this
+  //This function runs by itself and change the state
+  //Adds all the arrays
+  componentDidMount() {
     fetch('http://localhost:4000/items/getItems')
       .then(x => x.text())
       .then(responseBody => {
         // console.log('responseBody', responseBody)
         let parsedResponseBody = JSON.parse(responseBody)
         // console.log('parsedResponseBody :', parsedResponseBody)
-        let itemId = this.props.itemId
-        console.log('itemId :', itemId)
         let itemsArr = parsedResponseBody.results
-        // self.setState({ itmesArr: itemsArr })
-        // console.log('itemsArr :', itemsArr)
+        this.setState({ itemsArr: itemsArr })
+        this.verifyId(itemsArr)
       })
+  }
 
-    console.log('self', self)
-    // for (let item of itemsArr) {
-    //   console.log('item', item)
-    // }
+  verifyId = itemsArr => {
+    // console.log('itemsArr :', this.state.itemsArr)
+    let segment_str = window.location.pathname
+    let segment_array = segment_str.split('/')
+    let last_segment = segment_array.pop()
 
-    //   function filterArray(elem) {
-    //     if (elem._id === itemId) {
-    //       return true
-    //     } else {
-    //       return false
-    //     }
-    //   }
+    // console.log(last_segment)
+    // let result = flatten(itemData)
+    // console.log('itemData:', itemData)
 
-    //   correctItem = itemsArr.filter(filterArray)[0]
-    //   console.log('correct item', correctItem)
-    // })
+    //Go through the itemData array and if last part of URL matches,
+    //the ID then it will add it to the flat array
 
-    // setTimeout(,500)
-    // let _id = correctItem._id
-    // console.log('_id :', _id)
+    let flat = []
+    for (let i = 0; i < itemsArr.length; i++) {
+      if (last_segment === itemsArr[i]._id) {
+        flat = flat.concat(itemsArr[i])
+      }
+    }
+    this.setState({ newArr: flat[0] })
+    console.log(this.state.newArr)
+    // console.log(flat[0])
+    // return flat[0]
+  }
+
+  render() {
+    let category = this.state.newArr.category
+    let desc = this.state.newArr.description
+    let fd = this.state.newArr.fd
+    let likes = this.state.newArr.likes
+    let price = this.state.newArr.price
+    let seller = this.state.newArr.seller
+    let title = this.state.newArr.title
+    let id = this.state.newArr._id
 
     return (
-      <div className="container">
-        Image will be here soon
-        {/* <img width='50%' src={image} alt='pcs' /> */}
-        {/* <div className="container">
-          <div>{title}</div>
-          <div>{description}</div>
-          <div>${price}</div>
-          <div>{likes}</div>
-          <div>{category}</div>
-          <Link to={`/seller/${seller}`}> See a seller </Link>
+      <div className="container container-item-page">
+        <div className="row">
+          <div className="col-sm-6 left-column-buy">
+            <div className="buy-photo">{fd}</div>
+          </div>
+          <div className="col-sm-6 right-column-buy">
+            <div className="right-column-inside">
+              <h5>{title}</h5>
+              <div>{desc}</div>
+              <div className="buy-price">${price}</div>
+              <button className="btn btn-dark btn-block submit-button-signup button-add-cart">
+                Add To Cart
+              </button>
+            </div>
+          </div>
         </div>
-      </div> */}
+        {/* <Link to={`/seller/${seller}`}> See a seller </Link> */}
       </div>
     )
   }

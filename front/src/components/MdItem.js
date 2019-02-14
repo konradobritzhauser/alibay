@@ -21,12 +21,12 @@ export class MdItem extends Component {
     return (
       <div className="card center ">
         <Link to={`/items/${_id}`}>
-          Image will be here soon
+          <img className="card-img-top" />
           {/* <img width='50%' src={image} alt='pcs' /> */}
         </Link>
         <div className="container">
-          <div>{title}</div>
-          <div>${price}</div>
+          <h6 className="card-title">{title}</h6>
+          <p className="card-text">${price}</p>
         </div>
       </div>
     )
