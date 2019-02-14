@@ -4,6 +4,7 @@ let bodyParser = require('body-parser')
 let cors = require('cors')
 let multer = require('multer')
 let cookieParser=require('cookie-parser')
+let functionList = require("./functions");
 
 
 let testRoute = require('./routes/test')
@@ -19,6 +20,10 @@ app.use(cors({ credentials: true, origin: 'http://localhost:3000' }
 ))
 
 app.use(cookieParser())
+
+// app.use(express.static(__dirname+"/images"))
+
+
 
 let upload = multer({ dest: 'upload/' })
 

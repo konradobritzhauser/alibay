@@ -4,6 +4,13 @@ let functionList = require('../functions')
 let getdbo = require('../mongo-dbo-function')
 let ObjectID = require('mongodb').ObjectID
 let multer = require('multer')
+let fs=require('fs')
+
+let sampleItems=require('../items.js')
+
+router.use(express.static(__dirname+"/images"))
+
+
 
 let dbo
 setTimeout(() => (dbo = getdbo()), 2000)
@@ -30,6 +37,7 @@ router.post('/upload', upload.single('image'), function (req, res, next) {
   res.status(200).json({ success: true })
 })
 
+router.post('/getImage')
 
 
 router.post('/addItem', (req, res) => {
@@ -104,6 +112,17 @@ router.get('/getItems', (req, res) => {
     if (err) throw err
     console.log('result', result)
     res.status(200).json({ results: result, success: true })
+  })
+})
+
+
+router.post('/addManyItems',(req,res)=>{
+  functionList.logEPTrigger(req.originalUrl)
+  // console.log(sampleItems.Items)
+  dbo.collection('items').insertMany(sampleItems.Items,(err,result)=>{
+    console.log("items added")
+    res.status(200).json({success:true,message:"Items added successfully"})
+
   })
 })
 
