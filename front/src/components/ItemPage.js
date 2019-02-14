@@ -57,19 +57,21 @@ class ItemPage extends Component {
 
   addItemCart = event => {
     event.preventDefault()
-    this.props.history.push('/cart')
     let body = {
       // username: this.state.newArr.,
       itemId: this.state.newArr._id
     }
     console.log(body)
     try {
-      axios({
+      const check = axios({
         method: 'post',
         url: '/cart/addItem',
         credentials: 'include',
         data: body
       })
+      if (check.success) {
+        this.props.history.push('/cart')
+      }
     } catch (err) {
       console.log('err', err)
     }

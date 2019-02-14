@@ -156,6 +156,15 @@ html {
   flex: 1;
 }
 
+.category-item {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.category-item-border {
+  border-top: 1px solid #a8b7c6;
+}
+
 .category-holder {
   background-color: #cbd6e2;
 }
