@@ -21,7 +21,7 @@ class Category extends Component {
           <li className='nav-item' onClick={handlerOnChange}>Cameras</li>
           <li className='nav-item' onClick={handlerOnChange}>Laptop Computers</li>
           <li className='nav-item' onClick={handlerOnChange}>Desktop Computers</li>
-          <li className='nav-item' onClick={handlerOnChange}>Speaker</li>
+          <li className='nav-item' onClick={handlerOnChange}>Speakers</li>
           <li className='nav-item' onClick={handlerOnChange}>Watches</li>
           <li className='nav-item' onClick={handlerOnChange}>Headphones</li>
           <li className='nav-item' onClick={handlerOnChange}>Televisions</li>

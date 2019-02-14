@@ -1,7 +1,7 @@
 const Items = [
   {
     title: 'Acer Aspire E1-510 (2014)',
-    category: 'Desktop Computer',
+    category: 'Desktop Computers',
     description: `This Acer Aspire E1-510P-4614 slim laptop PC that features a beautiful 15.6" touchscreen display that makes organizing and programming on Windows 8.1 quick and easy.`,
     price: 495,
     fd: 'http://localhost:4000/items/Acer_Aspire_PC.jpg',
@@ -10,7 +10,7 @@ const Items = [
   },
   {
     title: 'Amazon Fire HD 8 (2016)',
-    category: 'Tablet',
+    category: 'Tablets',
     description: `The latest Fire HD 8 delivers faster performance, a bigger battery and more base storage than the previous version for almost half the price. `,
     price: 890,
     fd: 'http://localhost:4000/items/Amazon_Fire_HD_Tablet.jpg',
@@ -19,7 +19,7 @@ const Items = [
   },
   {
     title: 'Anker Portable Bluetooth Speaker',
-    category: 'Speaker',
+    category: 'Speakers',
     description: `Portable Bluetooth Speaker, Anker SoundCore 24-Hour Playtime Bluetooth Speaker with 10W Dual-Driver Stereo Sound.`,
     price: 49,
     fd: 'http://localhost:4000/items/Anker_Portable_Bluetooth_Speaker.jpg',
@@ -28,7 +28,7 @@ const Items = [
   },
   {
     title: 'Apple iPad mini 4 (128GB, Wi-Fi, Space Gray)',
-    category: 'Tablet',
+    category: 'Tablets',
     description: `7.9" Retina display, 2048 x 1536 resolution
     Apple iOS 9, dual-core a8 chip with quad-core graphics
     8 MP iSight camera, 1080p HD video recording.`,
@@ -39,7 +39,7 @@ const Items = [
   },
   {
     title: 'Asus_ASUS Transformer Laptop 12.6In',
-    category: 'Laptop Computer',
+    category: 'Laptop Computers',
     description: `Intel Core i7-7500U (4M Cache, 2.7GHz), 8GB LPDDR3, 512GB SSD, Intel HD Graphics 620, 802.11 ac, Bluetooth 4.1, Windows 10 Home`,
     price: 890,
     fd: 'http://localhost:4000/items/Asus_Transformer_Laptop.jpg',
@@ -48,7 +48,7 @@ const Items = [
   },
   {
     title: 'ASUS VivoBook S15 S510UA',
-    category: 'Laptop Computer',
+    category: 'Laptop Computers',
     description: `The ASUS VivoBook S15 gives you the perfect combination of beauty and performance. With its slim NanoEdge bezel, brushed-metal finish, the latest Intel® Core™ i7 processor.`,
     price: 1490,
     fd: 'http://localhost:4000/items/Asus_Vivobook_Laptop.jpg',
@@ -57,7 +57,7 @@ const Items = [
   },
   {
     title: 'BenQ Business Projector',
-    category: 'Projector',
+    category: 'Projectors',
     description: `BenQ MS524AE SVGA Business Projector, DLP, 3300 Lumens, 15,000:1 Contrast, Dual HDMI, 10,000hrs Lamp Life.`,
     price: 249,
     fd: 'http://localhost:4000/items/BenQ_Business_Projector.jpg',
@@ -75,7 +75,7 @@ const Items = [
   },
   {
     title: 'Bose SoundLink Revolve Splashproof Bluetooth NFC Wireless Speaker - Black',
-    category: 'Speaker',
+    category: 'Speakers',
     description: `Deep. Loud. And immersive, too. The SoundLink Revolve Bluetooth speaker delivers true 360° sound for consistent, uniform coverage.`,
     price: 199,
     fd: 'http://localhost:4000/items/Bose_Revolve_Bluetooth Speaker.jpg',
@@ -84,7 +84,7 @@ const Items = [
   },
   {
     title: 'Bose_Waterproof_Bluetooth_Speaker',
-    category: 'Speaker',
+    category: 'Speakers',
     description: `Amazing sound you can pass around, the SoundLink Micro Bluetooth speaker is made to share great music.`,
     price: 109,
     fd: 'http://localhost:4000/items/Bose_Waterproof_Bluetooth_Speaker.jpg',
@@ -102,7 +102,7 @@ const Items = [
   },
   {
     title: 'Canon EOS Rebel T6 DSLR Camera with EF-S 18-55mm f/3.5-5.6 DC III Lens Kit',
-    category: 'Camera',
+    category: 'Cameras',
     description: `Photography isn't hard, especially with the Canon EOS Rebel T6.`,
     price: 419,
     fd: 'http://localhost:4000/items/Canon_EOS_Rebel.jpg',
@@ -120,8 +120,8 @@ const Items = [
   },
   {
     title: 'CyberPowerPC - Gamer Ultra Desktop - AMD FX-Series - 8GB Memory - AMD Radeon RX 560 - 1TB Hard Drive - Black',
-    category: 'Desktop Computer',
-    description: `Jump into the gaming scene with this CyberPowerPC Gamer Ultra desktop computer. Its AMD Radeon RX graphics card renders stutter-free visuals.`,
+    category: 'Desktop Computers',
+    description: `Jump into the gaming scene with this CyberPowerPC Gamer Ultra desktop computers. Its AMD Radeon RX graphics card renders stutter-free visuals.`,
     price: 579,
     fd: 'http://localhost:4000/items/Cyperpower_Gamer_PC.jpg',
     likes: 10,
@@ -129,7 +129,7 @@ const Items = [
   },
   {
     title: 'Edifier R1280T Powered Bookshelf Speakers - 2.0 Active Near Field Monitors',
-    category: 'Speaker',
+    category: 'Speakers',
     description: `2 x AUX INPUT - Convenient connection to any device that has a 3.5mm headphone output or dual RCA output. Connect to two devices via AUX at the same time, no plugging and switching needed.`,
     price: 124,
     fd: 'http://localhost:4000/items/Edifier_Bookshelf_Speakers.jpg',
@@ -138,7 +138,7 @@ const Items = [
   },
   {
     title: 'PowerLite Epson Projector D6155W WXGA 3LCD',
-    category: 'Projector',
+    category: 'Projectors',
     description: `Robust performance. Cutting-edge connectivity features.
     Boasting a robust design, advanced networking capabilities and cost-efficient maintenance features, the PowerLite D6155W is the perfect solution for lecture halls and corporate conference rooms alike.`,
     price: 425,
@@ -157,7 +157,7 @@ const Items = [
   },
   {
     title: 'Fujifilm Finepix Camera. We Buy and Sell Used Cameras and Accessories. 115762 CH613404',
-    category: 'Camera',
+    category: 'Cameras',
     description: `Fujifilm Finepix Camera XP90. This item has been tested and is working 100%.`,
     price: 129,
     fd: 'http://localhost:4000/items/Fujifilm_Finepix_Camera.jpg',
@@ -166,7 +166,7 @@ const Items = [
   },
   {
     title: 'Fujifilm - instax mini 9 Instant Film Camera Blue',
-    category: 'Camera',
+    category: 'Cameras',
     description: `Remember joyful moments with this Fujifilm instax Mini 9 instant camera. It's lightweight and portable to accompany you on adventures, and the automatic exposure measurement ensures bright items.`,
     price: 99,
     fd: 'http://localhost:4000/items/Fujifilm_Instax_Camera_Blue.jpg',
@@ -175,7 +175,7 @@ const Items = [
   },
   {
     title: 'Fujifilm - instax mini 9 Instant Film Camera Pink',
-    category: 'Camera',
+    category: 'Cameras',
     description: `Remember joyful moments with this Fujifilm instax Mini 9 instant camera. It's lightweight and portable to accompany you on adventures, and the automatic exposure measurement ensures bright items.`,
     price: 99,
     fd: 'http://localhost:4000/items/Fujifilm_Instax_Camera_Pink.jpg',
@@ -184,7 +184,7 @@ const Items = [
   },
   {
     title: 'Garmin Forerunner Watch Blue',
-    category: 'Watch',
+    category: 'Watches',
     description: `Monitors heart rate¹ at the wrist, all day and night, using Garmin Elevate™ wrist heart rate technology
     Built-in GPS tracks how far, how fast and where you run.`,
     price: 129,
@@ -194,7 +194,7 @@ const Items = [
   },
   {
     title: 'Garmin Forerunner® 735XT Green',
-    category: 'Watch',
+    category: 'Watches',
     description: `Measures heart rate at the wrist¹ so you can run freer on race day Provides advanced dynamics² for running, cycling and swimming7, including ground contact time balance, stride length, vertical ratio and more.`,
     price: 589,
     fd: 'http://localhost:4000/items/Garmin_Forerunner_Watch_Green.jpg',
@@ -203,7 +203,7 @@ const Items = [
   },
   {
     title: 'Garmin Forerunner® 735XT Black',
-    category: 'Watch',
+    category: 'Watches',
     description: `Measures heart rate at the wrist¹ so you can run freer on race day Provides advanced dynamics² for running, cycling and swimming7, including ground contact time balance, stride length, vertical ratio and more.`,
     price: 589,
     fd: 'http://localhost:4000/items/Garmin_Forerunner_Watch.jpg',
@@ -230,7 +230,7 @@ const Items = [
   },
   {
     title: 'HP_Stream_Laptop',
-    category: 'Laptop',
+    category: 'Laptop Computers',
     description: `description`,
     price: 10,
     fd: 'http://localhost:4000/items/HP_Stream_Laptop.jpg',
@@ -239,7 +239,7 @@ const Items = [
   },
   {
     title: 'LG_Blue_Ray_Disc_Player',
-    category: 'Blu Ray Player',
+    category: 'Blu Ray Players',
     description: `description`,
     price: 10,
     fd: 'http://localhost:4000/items/LG_Blue_Ray_Disc_Player.jpg',
@@ -257,7 +257,7 @@ const Items = [
   },
   {
     title: 'Nikon_COOLPIX_B500_Camera',
-    category: 'Camera',
+    category: 'Cameras',
     description: `description`,
     price: 10,
     fd: 'http://localhost:4000/items/Nikon_COOLPIX_B500_Camera.jpg',
@@ -320,7 +320,7 @@ const Items = [
   },
   {
     title: 'ROG_Gaming_Laptop',
-    category: 'Laptop Computer',
+    category: 'Laptop Computers',
     description: `description`,
     price: 10,
     fd: 'http://localhost:4000/items/ROG_Gaming_Laptop.jpg',
@@ -329,7 +329,7 @@ const Items = [
   },
   {
     title: 'Samsung_Galaxy_Tablet_8',
-    category: 'Tablet',
+    category: 'Tablets',
     description: `description`,
     price: 10,
     fd: 'http://localhost:4000/items/Samsung_Galaxy_Tablet_8.jpg',
@@ -338,7 +338,7 @@ const Items = [
   },
   {
     title: 'Samsung_Galaxy_Tablet_10',
-    category: 'Tablet',
+    category: 'Tablets',
     description: `description`,
     price: 10,
     fd: 'http://localhost:4000/items/Samsung_Galaxy_Tablet_10.jpg',
@@ -347,7 +347,7 @@ const Items = [
   },
   {
     title: 'Samsung_Smart_TV',
-    category: 'Television',
+    category: 'Televisions',
     description: `description`,
     price: 10,
     fd: 'http://localhost:4000/items/Samsung_Smart_TV.jpg',
@@ -356,7 +356,7 @@ const Items = [
   },
   {
     title: 'Samsung_Ultra_HD_TV',
-    category: 'Television',
+    category: 'Televisions',
     description: `description`,
     price: 10,
     fd: 'http://localhost:4000/items/Samsung_Ultra_HD_TV.jpg',
@@ -374,7 +374,7 @@ const Items = [
   },
   {
     title: 'Sony_Blu_Ray_Disc_Player',
-    category: 'Blu Ray Player',
+    category: 'Blu Ray Players',
     description: `description`,
     price: 10,
     fd: 'http://localhost:4000/items/Sony_Blu_Ray_Disc_Player.jpg',
@@ -383,7 +383,7 @@ const Items = [
   },
   {
     title: 'TCL_Smart_TV',
-    category: 'Television',
+    category: 'Televisions',
     description: `description`,
     price: 10,
     fd: 'http://localhost:4000/items/TCL_Smart_TV.jpg',
@@ -401,7 +401,7 @@ const Items = [
   },
   {
     title: 'Viewsonic_Projector',
-    category: 'Projector',
+    category: 'Projectors',
     description: `description`,
     price: 10,
     fd: 'http://localhost:4000/items/Viewsonic_Projector.jpg',
@@ -421,17 +421,17 @@ const Items = [
 
 const Categories = [
   'Accessories',
-  'Camera',
-  'Laptop Computer',
-  'Desktop Computer',
-  'Speaker',
-  'Watch',
+  'Cameras',
+  'Laptop Computers',
+  'Desktop Computers',
+  'Speakers',
+  'Watches',
   'Headphones',
-  'Television',
-  'Projector',
+  'Televisions',
+  'Projectors',
   'Video Games',
-  'Tablet',
-  'Blu Ray Player'
+  'Tablets',
+  'Blu Ray Players'
 ]
 
 module.exports = { Items, Categories }
