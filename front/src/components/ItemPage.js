@@ -76,6 +76,7 @@ class ItemPage extends Component {
   }
 
   render() {
+    console.log('this.state.newArr', this.state.newArr)
     let category = this.state.newArr.category
     let desc = this.state.newArr.description
     let fd = this.state.newArr.fd
@@ -89,7 +90,7 @@ class ItemPage extends Component {
       <div className="container container-item-page">
         <div className="row">
           <div className="col-sm-6 left-column-buy">
-            <div className="buy-photo">{fd}</div>
+            <img className="buy-photo" src={fd} alt='product'></img>
           </div>
           <div className="col-sm-6 right-column-buy">
             <div className="right-column-inside">
