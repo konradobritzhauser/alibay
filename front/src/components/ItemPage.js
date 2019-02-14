@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../css/style.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 
 // import { Route, BrowserRouter, Link } from 'react-router-dom'
 
@@ -56,6 +57,7 @@ class ItemPage extends Component {
 
   addItemCart = event => {
     event.preventDefault()
+    this.props.history.push('/cart')
     let body = {
       // username: this.state.newArr.,
       itemId: this.state.newArr._id
@@ -94,14 +96,13 @@ class ItemPage extends Component {
               <h5>{title}</h5>
               <div>{desc}</div>
               <div className="buy-price">${price}</div>
-              <Link
+              <button
                 to="/cart"
-                type="button"
                 className="btn btn-dark btn-block submit-button-signup button-add-cart"
                 onClick={this.addItemCart}
               >
                 Add To Cart
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -111,4 +112,4 @@ class ItemPage extends Component {
   }
 }
 
-export default ItemPage
+export default withRouter(ItemPage)
