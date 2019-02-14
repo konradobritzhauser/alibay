@@ -58,15 +58,41 @@ export class unConnectedCart extends Component {
   displayCartItems(){
     let cartIdArr=this.props.cart.items
     console.log("cartIdArr",cartIdArr)
+    axios(
+      {method:"get",url:"items/getItems"}
+    ).then(function(response){
+      // console.log('response', response)
+      let allItems=response.data.results
+      console.log('allItems', allItems)
+      let relaventItems=[]
+
+      function compareToCart(){
+      }
+
+      function compareToCart(){
+        for(let i=0;i<cartIdArr.length;i++){
+          
+        }
+      }
+      
+
+      allItems.forEach()
+
+    })
     
+    
+    
+
+
+
     function displayItem(elem){
       return <div>{elem}</div>
     }
     
 
-    try{
-      return cartIdArr.map(displayItem)
-    }catch(e){}
+    // try{
+    //   return cartIdArr.map(displayItem)
+    // }catch(e){}
     
     
   }
@@ -84,8 +110,10 @@ export class unConnectedCart extends Component {
     return (
       <div>
         <div>
+          <h3>Your Cart</h3>
+        <div>{this.displayCartItems()}</div>
           <input type='button' onClick={this.clearCart} value="Clear Cart"></input>
-          <div>{this.displayCartItems()}</div>
+          
         </div>
       </div>
     )
