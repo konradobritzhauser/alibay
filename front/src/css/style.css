@@ -107,7 +107,7 @@ html {
   height: 70px;
   bottom: 0;
   width: 100%;
-  z-index: -9999;
+  z-index: 1;
 }
 
 /*SELL FORM STYLES*/
@@ -156,21 +156,30 @@ html {
   flex: 1;
 }
 
+.category-holder {
+  background-color: #cbd6e2;
+}
+
 .category-item-row {
   flex: 1;
 }
 
 .item-holder {
+  height: 100%;
   margin: 0 auto;
   overflow-y: auto;
   text-align: center;
   padding-top: 40px;
   padding-left: 40px;
+  padding-bottom: 40px;
 }
 /*SELL FORM STYLES*/
 
 .categories-main {
-  background-color: red;
+  height: 100%;
+  padding: 40px;
+  padding-top: 60px;
+  line-height: 25px;
 }
 
 /*ITEM PAGE*/
