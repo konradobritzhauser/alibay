@@ -60,12 +60,13 @@ class ItemPage extends Component {
       // username: this.state.newArr.,
       itemId: this.state.newArr._id
     }
+    console.log(body)
     try {
       axios({
         method: 'post',
         url: '/cart/addItem',
         credentials: 'include',
-        body: body
+        data: body
       })
     } catch (err) {
       console.log('err', err)

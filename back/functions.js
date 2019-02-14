@@ -8,6 +8,14 @@ let functionsList={
     logEPTrigger:function(originalUrl){
         
         console.log("\n-------------------------------\ntriggered endpoint:",functionsList.getUrl(originalUrl))
+    },
+
+    stringToNumber: function(cookieSessionId){
+    console.log("cookie as string",cookieSessionId)
+    let numberCookieSessionId=parseInt(cookieSessionId,10)
+    console.log(typeof numberCookieSessionId)
+    console.log("cookie as number",numberCookieSessionId)
+    return numberCookieSessionId
     }
 }
 
