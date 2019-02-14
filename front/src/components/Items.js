@@ -6,22 +6,22 @@ import MdItem from './MdItem'
 import { fetchItemsAction } from '../actions/itemActions'
 
 export class Items extends Component {
-  componentDidMount() {
+  componentDidMount () {
     this.props.fetchItemsAction()
   }
 
-  render() {
+  render () {
     const getItems = () => {
       // console.log('this.props.items', this.props.items)
       let { items } = this.props
-      console.log('items from Items component ', items)
+      // console.log('items from Items component ', items)
       if (items !== undefined) {
         return items.map(item => <MdItem item={item} key={item._id} />)
       }
     }
     return (
-      <div className="container mr-auto">
-        <div className="row">{getItems()}</div>
+      <div className='container mr-auto'>
+        <div className='row'>{getItems()}</div>
       </div>
     )
   }
