@@ -57,11 +57,16 @@ class ItemPage extends Component {
   addItemCart = event => {
     event.preventDefault()
     let body = {
-      username: this.state.newArr.seller,
+      // username: this.state.newArr.,
       itemId: this.state.newArr._id
     }
     try {
-      axios.post('/cart/addItem', body)
+      axios({
+        method: 'post',
+        url: '/cart/addItem',
+        credentials: 'include',
+        body: body
+      })
     } catch (err) {
       console.log('err', err)
     }
@@ -88,13 +93,13 @@ class ItemPage extends Component {
               <h5>{title}</h5>
               <div>{desc}</div>
               <div className="buy-price">${price}</div>
-              <Link to="/cart">
-                <button
-                  className="btn btn-dark btn-block submit-button-signup button-add-cart"
-                  onClick={this.addItemCart}
-                >
-                  Add To Cart
-                </button>
+              <Link
+                to="/cart"
+                type="button"
+                className="btn btn-dark btn-block submit-button-signup button-add-cart"
+                onClick={this.addItemCart}
+              >
+                Add To Cart
               </Link>
             </div>
           </div>
