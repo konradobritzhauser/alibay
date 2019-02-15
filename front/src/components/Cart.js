@@ -1,133 +1,115 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import axios from 'axios'
-import { fetchItemsAction } from '../actions/itemActions'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import axios from "axios";
+import { fetchItemsAction } from "../actions/itemActions";
+import { LOGGEDIN } from "../actions/types";
 
 export class unConnectedCart extends Component {
-  constructor(props){
-    super(props)
-    // this.state={cartCleared}
-    this.displayCartItems=this.displayCartItems.bind(this)
-    this.clearCart=this.clearCart.bind(this)
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.displayCartItems = this.displayCartItems.bind(this);
+    this.clearCart = this.clearCart.bind(this);
   }
-  componentDidMount(){
-
+  componentDidMount() {
     // const data = await (await axios({
     //     method: 'post',
-    //     url: '/user/login', 
+    //     url: '/user/login',
     //     data: body,
     //     credentials: 'include'
     //   })).data
     // this.props.fetchItemsAction()
-    console.log("props",this.props)
-    let that=this
-    let props=this.props
-    console.log('document.cookie is',document.cookie)
+    console.log("props", this.props);
+    let that = this;
+    let props = this.props;
+    console.log("document.cookie is", document.cookie);
     // let body={username:"konrad"}
-      axios(
-      {method:'post',url:'/cart/getCart',credentials:'include'}
-      ).then(function(response){
-    // console.log("props",props)
-        // console.log(response)
-        let results=response.data.results
-        console.log('resultsId', results)
-        props.dispatch({type:"GET_CART",payload:results})
-        // that.setState({itemsById:results})
-        // that.setState({allItems:props.items})
-      })
-  }
-
-  getCartItems(){
-    console.log("props",this.props)
-    let that=this
-    let props=this.props
-    console.log('document.cookie is',document.cookie)
-    // let body={username:"konrad"}
-      axios(
-      {method:'post',url:'/cart/getCart',credentials:'include'}
-      ).then(function(response){
-    // console.log("props",props)
-        // console.log(response)
-        let results=response.data.results
-        console.log('resultsId', results)
-        props.dispatch({type:"GET_CART",payload:results})
-        // that.setState({itemsById:results})
-        // that.setState({allItems:props.items})
-      })
-  }
-  displayCartItems(){
-    let cartIdArr=this.props.cart.items
-    console.log("cartIdArr",cartIdArr)
-    axios(
-      {method:"get",url:"items/getItems"}
-    ).then(function(response){
-      // console.log('response', response)
-      let allItems=response.data.results
-      console.log('allItems', allItems)
-      let relaventItems=[]
-
-      function compareToCart(){
-      }
-
-      function compareToCart(){
-        for(let i=0;i<cartIdArr.length;i++){
-          
-        }
-      }
-      
-
-      allItems.forEach()
-
-    })
-    
-    
-    
-
-
-
-    function displayItem(elem){
-      return <div>{elem}</div>
-    }
-    
-
-    // try{
-    //   return cartIdArr.map(displayItem)
-    // }catch(e){}
-    
-    
-  }
-  clearCart(){
-    let that=this
     axios({
-      method:"post",
-      url:"cart/clearCart",
-      credentials:"include"
-    }).then(that.getCartItems())
+      method: "post",
+      url: "/cart/getCart",
+      credentials: "include"
+    }).then(function(response) {
+      // console.log("props",props)
+      // console.log(response)
+      let results = response.data.results;
+      console.log("resultsId", results);
+      props.dispatch({ type: "GET_CART", payload: results });
+      // that.setState({itemsById:results})
+      // that.setState({allItems:props.items})
+    });
   }
 
-  render () {
-    
-    return (
-      <div>
-        <div>
-          <h3>Your Cart</h3>
-        <div>{this.displayCartItems()}</div>
-          <input type='button' onClick={this.clearCart} value="Clear Cart"></input>
-          
+  getCartItems() {
+    console.log("props", this.props);
+    let that = this;
+    let props = this.props;
+    console.log("document.cookie is", document.cookie);
+    // let body={username:"konrad"}
+    axios({
+      method: "post",
+      url: "/cart/getCart",
+      credentials: "include"
+    }).then(function(response) {
+      // console.log("props",props)
+      // console.log(response)
+      let results = response.data.results;
+      console.log("resultsId", results);
+      props.dispatch({ type: "GET_CART", payload: results });
+      // that.setState({itemsById:results})
+      // that.setState({allItems:props.items})
+    });
+  }
+  displayCartItems() {
+    return this.props.cart.items.map(elem => {
+      return (
+        <div className="container">
+          <h4>{elem.title}</h4>
+          <div className="row">
+            <h6>{"$" + elem.price}</h6>
+            <div />
+            <img src={elem.fd} style={{ width: "100px", height: "50px" }} />
+          </div>
         </div>
-      </div>
+      );
+    });
+  }
+  clearCart() {
+    let that = this;
+    axios({
+      method: "post",
+      url: "cart/clearCart",
+      credentials: "include"
+    }).then(that.getCartItems());
+  }
+
+  render() {
+    if(this.props.loggedIn){
+      return (
+        <div>
+          <div>
+            <h3>Your Cart</h3>
+            <div>{this.displayCartItems()}</div>
+            <input type="button" onClick={this.clearCart} value="Clear Cart" />
+          </div>
+        </div>
+      );
+    }
+    return(
+      <h3 className="container  text-center">To view you cart please log in or sign up</h3>
     )
+    
   }
 }
 
-let mapStateToProps=function(state){
-  return{
-    cart:state.cart,
-    items:state.items
-  }
-} 
+let mapStateToProps = function(state) {
+  return {
+    cart: state.cart,
+    items: state.items,
+    loggedin:state.loggedIn
+  };
+};
 
-let Cart=connect(mapStateToProps)(unConnectedCart)
+let Cart = connect(mapStateToProps)(unConnectedCart);
 
 // const mapStateToProps = state => {
 //   return {
@@ -139,5 +121,4 @@ let Cart=connect(mapStateToProps)(unConnectedCart)
 //   { fetchItemsAction }
 // )(Items)
 
-
-export default Cart
+export default Cart;
