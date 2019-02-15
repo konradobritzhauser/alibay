@@ -36,11 +36,14 @@ router.post("/addItem", (req, res) => {
                
 
       dbo.collection("carts").updateOne(
+        
         { username: username },
         {
           $push: { cart: result[0] }
         },
-        res.status(200).json({ success: true, message: "item added to cart" })
+        (err,result)=>{
+          console.log("add to cart success")
+          res.status(200).json({ success: true, message: "item added to cart" })}
       );
     });
   });

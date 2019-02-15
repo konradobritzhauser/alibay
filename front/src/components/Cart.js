@@ -7,11 +7,10 @@ import { LOGGEDIN } from "../actions/types";
 export class unConnectedCart extends Component {
   constructor(props) {
     super(props);
-    this.state = { totalSum: 0,checkedOut:false };
+    this.state = { totalSum: 0, checkedOut: false };
     this.displayCartItems = this.displayCartItems.bind(this);
     this.clearCart = this.clearCart.bind(this);
     this.DisplayTotalPrice = this.DisplayTotalPrice.bind(this);
-    
   }
   componentDidMount() {
     // const data = await (await axios({
@@ -62,21 +61,32 @@ export class unConnectedCart extends Component {
     });
   }
   displayCartItems() {
-    return this.props.cart.items.map(elem => {
-      let totalSum = this.state.totalSum + elem.price;
-      // this.setState({ totalSum: totalSum });
-      return (
-        <div className="container">
-          <h4>{elem.title}</h4>
-          <div className="row">
-            <div />
-            <img src={elem.fd} style={{ width: "100px", height: "50px" }} />
-            <h6>{"$" + elem.price}</h6>
+    let totalSum = 0;
+    console.log("props",this.props)
+     let getCartItems=()=> {
+      
+      this.props.cart.items.map(elem => {
+        totalSum = this.state.totalSum + elem.price;
+        // this.setState({ totalSum: totalSum });
+        return (
+          <div className="container">
+            <h4>{elem.title}</h4>
+            <div className="row">
+              <div />
+              <img src={elem.fd} style={{ width: "100px", height: "50px" }} />
+              <h6>{"$" + elem.price}</h6>
+            </div>
+            
           </div>
-          <h5>Total Sum: {totalSum}</h5>
-        </div>
-      );
-    });
+        );
+      });
+    }
+    return (
+      <div>
+        {getCartItems()}
+        <h5>Total wSum: {totalSum}</h5>
+      </div>
+    )
   }
   DisplayTotalPrice() {
     return (
@@ -91,20 +101,20 @@ export class unConnectedCart extends Component {
       method: "post",
       url: "cart/clearCart",
       credentials: "include"
-    }).then(function(){
+    }).then(function() {
       // that.getCartItems()
-      that.setState({checkedOut:true})
-    }
-      
-    );
+      that.setState({ checkedOut: true });
+    });
   }
 
   render() {
-    if(this.state.checkedOut){
-      return <h3 className="container  text-center">Checkout complete. Thank you for choosing Alibay!</h3>
-    }
-
-    else if (this.props.loggedIn) {
+    if (this.state.checkedOut) {
+      return (
+        <h3 className="container  text-center">
+          Checkout complete. Thank you for choosing Alibay!
+        </h3>
+      );
+    } else if (this.props.loggedIn) {
       return (
         <div>
           <div>
