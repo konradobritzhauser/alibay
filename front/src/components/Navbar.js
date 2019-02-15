@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
 import '../css/style.css'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
+import { filterWildSearch } from '../actions/itemActions'
 class Navbar extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      searchInput: ''
+    }
+  }
   render () {
     // console.log('loggedin', this.props.loggedin)
 
@@ -38,6 +46,34 @@ class Navbar extends Component {
       }
     }
 
+    const onSearchChange = (event) => {
+      this.setState({ searchInput: event.target.value })
+    }
+
+    const handleSearchSubmit = async (e) => {
+      console.log('this.state.searchInput', this.state.searchInput)
+
+      e.preventDefault()
+      try {
+        const data = await (await axios({
+          method: 'post',
+          url: '/items/searchItems',
+          data: { $regex: this.state.searchInput },
+          credentials: 'include'
+        })).data
+        console.log(data)
+        if (data.success) {
+          // If backend gives {success: true} then we set store
+          this.props.filterWildSearch(data.result)
+          // this.props.history.push('/items')
+        }
+      } catch (err) {
+        console.log('err', err)
+      }
+
+      this.setState({ searchInput: '' })
+    }
+
     return (
       <div>
         <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
@@ -60,13 +96,14 @@ class Navbar extends Component {
               </li>
             </ul>
 
-            <form className='form-inline my-2 my-lg-0 mr-auto ml-auto'>
+            <form onSubmit={handleSearchSubmit} className='form-inline my-2 my-lg-0 mr-auto ml-auto'>
               <input
                 className='form-control mr-sm-2'
                 id='navbar-search'
                 type='search'
                 placeholder='Search for products'
                 aria-label='Search'
+                onChange={onSearchChange}
               />
               <button
                 className='btn btn-outline-secondary my-2 my-sm-0'
@@ -99,4 +136,4 @@ const mapStateToProps = state => {
     loggedin: state.user.loggedIn
   }
 }
-export default connect(mapStateToProps)(Navbar)
+export default connect(mapStateToProps, { filterWildSearch })(withRouter(Navbar))

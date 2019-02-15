@@ -1,4 +1,4 @@
-import { FETCH_ITEMS, FILTER_BY_CATEGORY_ITEMS, UNFILTER_ITEMS } from '../actions/types'
+import { FETCH_ITEMS, FILTER_BY_CATEGORY_ITEMS, UNFILTER_ITEMS, FILTER_WILD_SEARCH } from '../actions/types'
 
 const initialState = {
   items: [],
@@ -14,7 +14,7 @@ export default (state = initialState, { type, payload }) => {
         items: payload
       }
     case FILTER_BY_CATEGORY_ITEMS:
-      console.log('payload from itemsReducer', payload)
+      // console.log('payload from itemsReducer', payload)
       return {
         ...state,
         items: state.allItems.filter((item) => {
@@ -22,10 +22,16 @@ export default (state = initialState, { type, payload }) => {
         })
       }
     case UNFILTER_ITEMS:
-      console.log('payload UNFILTERED from itemsReducer', payload)
+      // console.log('payload UNFILTERED from itemsReducer', payload)
       return {
         ...state,
         items: state.allItems
+      }
+    case FILTER_WILD_SEARCH:
+      console.log('payload WILD SEARCH from itemsReducer', payload)
+      return {
+        ...state,
+        items: payload
       }
     default:
       return state

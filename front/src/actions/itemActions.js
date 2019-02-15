@@ -1,4 +1,4 @@
-import { FETCH_ITEMS, FILTER_BY_CATEGORY_ITEMS, UNFILTER_ITEMS } from './types'
+import { FETCH_ITEMS, FILTER_BY_CATEGORY_ITEMS, UNFILTER_ITEMS, FILTER_WILD_SEARCH } from './types'
 import axios from 'axios'
 
 export const fetchItemsAction = () => async dispatch => {
@@ -21,6 +21,17 @@ export const filterByCategory = (category) => async dispatch => {
     dispatch({
       type: FILTER_BY_CATEGORY_ITEMS,
       payload: category
+    })
+  } catch (err) {
+    console.log('err is ', err)
+  }
+}
+
+export const filterWildSearch = (arrSearch) => async dispatch => {
+  try {
+    dispatch({
+      type: FILTER_WILD_SEARCH,
+      payload: arrSearch
     })
   } catch (err) {
     console.log('err is ', err)
