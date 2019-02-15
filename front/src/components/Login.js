@@ -40,7 +40,7 @@ class Login extends Component {
       username: this.state.username,
       password: this.state.password
     }
-    
+
     try {
       const data = await (await axios({
         method: 'post',
@@ -63,8 +63,8 @@ class Login extends Component {
     return (
       <div className="aligner">
         <div className="login-form-modal">
-          <h2>Login</h2>
-          <span className="close-login">&times;</span>
+          <h4 className="login-title">Login</h4>
+
           <form onSubmit={this.handleSubmit} method="post">
             <div className="form-group">
               <input

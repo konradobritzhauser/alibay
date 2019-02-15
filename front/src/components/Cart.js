@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import axios from "axios";
-import { fetchItemsAction } from "../actions/itemActions";
-import { LOGGEDIN } from "../actions/types";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import axios from 'axios'
+import { fetchItemsAction } from '../actions/itemActions'
+import { LOGGEDIN } from '../actions/types'
 
 export class unConnectedCart extends Component {
   constructor(props) {
-    super(props);
-    this.state = { totalSum: 0, checkedOut: false };
-    this.displayCartItems = this.displayCartItems.bind(this);
-    this.clearCart = this.clearCart.bind(this);
-    this.DisplayTotalPrice = this.DisplayTotalPrice.bind(this);
+    super(props)
+    this.state = { totalSum: 0, checkedOut: false }
+    this.displayCartItems = this.displayCartItems.bind(this)
+    this.clearCart = this.clearCart.bind(this)
+    this.DisplayTotalPrice = this.DisplayTotalPrice.bind(this)
   }
   componentDidMount() {
     // const data = await (await axios({
@@ -20,71 +20,78 @@ export class unConnectedCart extends Component {
     //     credentials: 'include'
     //   })).data
     // this.props.fetchItemsAction()
-    console.log("props", this.props);
-    let that = this;
-    let props = this.props;
-    console.log("document.cookie is", document.cookie);
+    console.log('props', this.props)
+    let that = this
+    let props = this.props
+    console.log('document.cookie is', document.cookie)
     // let body={username:"konrad"}
     axios({
-      method: "post",
-      url: "/cart/getCart",
-      credentials: "include"
+      method: 'post',
+      url: '/cart/getCart',
+      credentials: 'include'
     }).then(function(response) {
       // console.log("props",props)
       // console.log(response)
-      let results = response.data.results;
-      console.log("resultsId", results);
-      props.dispatch({ type: "GET_CART", payload: results });
+      let results = response.data.results
+      console.log('resultsId', results)
+      props.dispatch({ type: 'GET_CART', payload: results })
       // that.setState({itemsById:results})
       // that.setState({allItems:props.items})
-    });
+    })
   }
 
   getCartItems() {
-    console.log("props", this.props);
-    let that = this;
-    let props = this.props;
-    console.log("document.cookie is", document.cookie);
+    console.log('props', this.props)
+    let that = this
+    let props = this.props
+    console.log('document.cookie is', document.cookie)
     // let body={username:"konrad"}
     axios({
-      method: "post",
-      url: "/cart/getCart",
-      credentials: "include"
+      method: 'post',
+      url: '/cart/getCart',
+      credentials: 'include'
     }).then(function(response) {
       // console.log("props",props)
       // console.log(response)
-      let results = response.data.results;
-      console.log("resultsId", results);
-      props.dispatch({ type: "GET_CART", payload: results });
+      let results = response.data.results
+      console.log('resultsId', results)
+      props.dispatch({ type: 'GET_CART', payload: results })
       // that.setState({itemsById:results})
       // that.setState({allItems:props.items})
-    });
+    })
   }
   displayCartItems() {
-    let totalSum = 0;
-    console.log("props",this.props)
-     let getCartItems=()=> {
-      
+    let totalSum = 0
+    console.log('props', this.props)
+    let getCartItems = () => {
       return this.props.cart.items.map(elem => {
-        totalSum = totalSum + elem.price;
+        totalSum = totalSum + elem.price
         // this.setState({ totalSum: totalSum });
         return (
           <div className="container">
-            <h4>{elem.title}</h4>
             <div className="row">
               <div />
-              <img src={elem.fd} style={{ width: "100px", height: "50px" }} />
-              <h6>{"$" + elem.price}</h6>
+              <div>
+                <img
+                  src={elem.fd}
+                  style={{ width: '100px', height: '100px' }}
+                />
+              </div>
+              <div>
+                <h4 className="title-cart">{elem.title}</h4>
+              </div>
+              <div>
+                <h6>{' -$' + elem.price}</h6>
+              </div>
             </div>
-            
           </div>
-        );
-      });
+        )
+      })
     }
     return (
       <div>
         {getCartItems()}
-        <h5>Total Sum:$    {totalSum}</h5>
+        <h5 className="total-price">Total Sum:$ {totalSum}</h5>
       </div>
     )
   }
@@ -93,20 +100,20 @@ export class unConnectedCart extends Component {
       <div>
         <h4>Sum Total:{this.state.totalSum}</h4>
       </div>
-    );
+    )
   }
   clearCart(e) {
-    console.log("e",e.currentTarget)
-    let that = this;
+    console.log('e', e.currentTarget)
+    let that = this
     axios({
-      method: "post",
-      url: "cart/clearCart",
-      credentials: "include"
+      method: 'post',
+      url: 'cart/clearCart',
+      credentials: 'include'
     }).then(function() {
       // that.getCartItems()
-     
-      that.setState({ checkedOut: true });
-    });
+
+      that.setState({ checkedOut: true })
+    })
   }
 
   render() {
@@ -115,10 +122,10 @@ export class unConnectedCart extends Component {
         <h3 className="container  text-center">
           Checkout complete. Thank you for choosing Alibay!
         </h3>
-      );
+      )
     } else if (this.props.loggedIn) {
       return (
-        <div>
+        <div className="container cart-holder">
           <div>
             <h3>Your Cart</h3>
             <div>{this.displayCartItems()}</div>
@@ -127,22 +134,24 @@ export class unConnectedCart extends Component {
                 type="button"
                 onClick={this.clearCart}
                 value="Clear Cart"
+                className="btn btn-dark btn-block button-cart-clear"
               />
               <input
                 type="button"
                 onClick={this.clearCart}
                 value="Complete Checkout"
+                className="btn btn-dark btn-block button-cart-checkout"
               />
             </div>
           </div>
         </div>
-      );
+      )
     }
     return (
       <h3 className="container  text-center">
         To view you cart please log in or sign up
       </h3>
-    );
+    )
   }
 }
 
@@ -151,10 +160,10 @@ let mapStateToProps = function(state) {
     cart: state.cart,
     items: state.items,
     loggedIn: state.user.loggedIn
-  };
-};
+  }
+}
 
-let Cart = connect(mapStateToProps)(unConnectedCart);
+let Cart = connect(mapStateToProps)(unConnectedCart)
 
 // const mapStateToProps = state => {
 //   return {
@@ -166,4 +175,4 @@ let Cart = connect(mapStateToProps)(unConnectedCart);
 //   { fetchItemsAction }
 // )(Items)
 
-export default Cart;
+export default Cart

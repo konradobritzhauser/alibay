@@ -48,12 +48,16 @@ html {
   background-color: white;
 }
 
-.close-login {
+/* .close-login {
   position: absolute;
   font-size: 25px;
   top: 0px;
   right: 10px;
   cursor: pointer;
+} */
+
+.login-title {
+  margin-bottom: 20px;
 }
 
 .submit-button-login {
@@ -81,12 +85,16 @@ html {
   background-color: white;
 }
 
-.close-signup {
+/* .close-signup {
   position: absolute;
   font-size: 25px;
   top: 0px;
   right: 10px;
   cursor: pointer;
+} */
+
+.signup-title {
+  margin-bottom: 20px;
 }
 
 .submit-button-signup {
@@ -191,15 +199,37 @@ html {
 .holder-text-title-buy {
   text-align: center;
   margin: 0 auto;
+  text-decoration: none;
+}
+.items-text-buy a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
 }
 
 .items-text-buy {
   width: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.items-text-buy a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
 }
 
 .items-title-buy {
   text-align: center;
   width: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.items-title-buy a {
+  text-decoration: none;
 }
 
 .card-container {
@@ -259,4 +289,53 @@ html {
 .right-column-inside {
   margin-top: 70px;
   height: 200px;
+}
+
+/*FOR THE CART*/
+.cart-holder {
+  width: 40%;
+  height: auto;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.button-cart-clear {
+  background-color: #437fb9;
+  color: white;
+  border: 1px solid #437fb9;
+  float: left;
+  width: 45%;
+}
+
+.button-cart-checkout {
+  background-color: #437fb9;
+  color: white;
+  border: 1px solid #437fb9;
+  float: right;
+  width: 45%;
+}
+
+.button-cart-clear:hover {
+  background-color: #33618d;
+  color: white;
+}
+
+.button-cart-checkout:hover {
+  background-color: #33618d;
+  color: white;
+}
+
+.title-cart {
+  font-size: 16px;
+  height: 20px;
+}
+
+.total-price {
+  font-size: 20px;
+  float: right;
 }

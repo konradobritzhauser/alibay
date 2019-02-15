@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import '../css/style.css'
 import axios from 'axios'
@@ -47,8 +47,8 @@ class Signup extends Component {
     return (
       <div className="aligner">
         <div className="signup-form-modal">
-          <h2>Sign Up</h2>
-          <span className="close-signup">&times;</span>
+          <h4 className="signup-title">Sign Up</h4>
+
           <form onSubmit={this.handleSubmit} method="post">
             <div className="form-group">
               <input
