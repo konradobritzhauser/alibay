@@ -66,7 +66,7 @@ export class unConnectedCart extends Component {
      let getCartItems=()=> {
       
       return this.props.cart.items.map(elem => {
-        totalSum = this.state.totalSum + elem.price;
+        totalSum = totalSum + elem.price;
         // this.setState({ totalSum: totalSum });
         return (
           <div className="container">
@@ -84,7 +84,7 @@ export class unConnectedCart extends Component {
     return (
       <div>
         {getCartItems()}
-        <h5>Total Sum: {totalSum}</h5>
+        <h5>Total Sum:$    {totalSum}</h5>
       </div>
     )
   }

@@ -210,6 +210,7 @@ router.post('/addManyItems', (req, res) => {
   })
 })
 
+// example expected object {"$regex":"cam"}
 router.post('/searchItems', (req, res) => {
   functionList.logEPTrigger(req.originalUrl)
   let queryCriteria = req.body
