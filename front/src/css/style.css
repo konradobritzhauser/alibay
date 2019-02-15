@@ -176,7 +176,6 @@ html {
 .container-for-items {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
 }
 
 .item-holder {
@@ -189,8 +188,24 @@ html {
   padding-bottom: 40px;
 }
 
+.holder-text-title-buy {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.items-text-buy {
+  width: 100%;
+}
+
+.items-title-buy {
+  text-align: center;
+  width: 100%;
+}
+
 .card-container {
-  flex: 1 0 20%;
+  margin: 0 auto;
+  text-align: center;
+  width: 200px;
   margin: 5px;
   height: 200px;
 }
@@ -217,7 +232,6 @@ html {
   display: flex;
   margin-top: 40px;
   flex-direction: column;
-  flex: 1;
 }
 
 .button-add-cart {
@@ -225,7 +239,6 @@ html {
   margin-top: 15px;
 }
 .buy-photo {
-  margin-top: 40px;
   text-align: center;
   width: 100%;
 }

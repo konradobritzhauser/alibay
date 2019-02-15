@@ -25,9 +25,9 @@ export class MdItem extends Component {
             style={{ width: '100px' }}
           />
           {/* <img width='50%' src={image} alt='pcs' /> */}
-          <div className="container">
-            <h6 className="card-title">{title}</h6>
-            <p className="card-text">${price}</p>
+          <div className="container holder-text-title-buy">
+            <h6 className="card-title items-title-buy">{title}</h6>
+            <p className="card-text items-text-buy">${price}</p>
           </div>
         </Link>
       </div>
