@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import '../css/style.css'
+import {connect} from 'react-redux'
 import axios from 'axios'
+
+import {fetchItemsAction} from '../actions/itemActions'
 
 // TODO: Try to use icons from https://github.com/FortAwesome/react-fontawesome
 
@@ -11,7 +14,7 @@ export class SellForm extends Component {
       title: '',
       category: '',
       description: '',
-      price: '',
+      price: 0,
       image: ''
     }
   }
@@ -39,40 +42,43 @@ export class SellForm extends Component {
 
   handleSubmit = async event => {
     event.preventDefault()
-    // let seller = 'dennis'
-    // let likes = 0
+    let errArr =[]
+
+    let seller = 'dennis'
+    let likes = 0
+    let { title, category, description, price } = this.state
+    console.log(this.state)
+    if(title===''|| category==='' || description==='' || price===0) errArr.push('err')
+    console.log(errArr.length)
+    if (errArr.length===1) {
+      return window.alert('Please, check your input')
+    } else {
     const fd = new FormData()
     // console.log('name:' + this.state.image.name)
-    // debugger
-    fd.append('image', this.state.image, this.state.image.name)
-    // console.log(fd)
-    let { title, category, description, price } = this.state
+    fd.append('fd', this.state.image, this.state.image.name)
     fd.append('title', title)
+    fd.append('category', category)
+    fd.append('description', description)
+    fd.append('price', price)
+    fd.append('likes', likes)
+    fd.append('seller', seller)
 
-    for (let pair of fd.entries()) {
-      console.log(pair[0] + ', ' + pair[1])
-    }
-    // console.log('fd --->>>', fd.entries())
-    // let body = {
-    //   // title,
-    //   // category,
-    //   // description,
-    //   // price,
-    //   // seller,
-    //   // likes,
-    //   fd
-    // }
-    // for (var entry of fd.entries()) {
-    //   console.log(entry[0] + ', ' + entry[1] + ', ' + entry[2])
-    // }
+    
     console.log('body is --->', fd)
 
     let data = (await axios({
       method: 'post',
-      url: '/upload',
-      data: fd
+      url: 'items/upload',
+      data: fd,
+      credentials: 'include'
     })).data
-    // console.log('data', fd)
+    console.log('data', data)
+    if (data.succes) {
+      window.alert('Your item has been added')
+      // Update state with added item
+      this.props.fetchItemsAction()
+    }
+  }
   }
 
   render() {
@@ -96,17 +102,17 @@ export class SellForm extends Component {
               onChange={this.categoryHandler}
             >
               <option>Accessories</option>
-              <option>Camera</option>
-              <option>Laptop Computer</option>
-              <option>Desktop Computer</option>
-              <option>Speaker</option>
-              <option>Watch</option>
+              <option>Cameras</option>
+              <option>Laptop Computers</option>
+              <option>Desktop Computers</option>
+              <option>Speakers</option>
+              <option>Watches</option>
               <option>Headphones</option>
-              <option>Television</option>
-              <option>Projector</option>
+              <option>Televisions</option>
+              <option>Projectors</option>
               <option>Video Games</option>
-              <option>Tablet</option>
-              <option>Blu Ray Player</option>
+              <option>Tablets</option>
+              <option>Blu Ray Players</option>
             </select>
           </div>
           <div className="form-group">
@@ -142,4 +148,5 @@ export class SellForm extends Component {
   }
 }
 
-export default SellForm
+export default connect(null,{fetchItemsAction})(SellForm)
+

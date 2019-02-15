@@ -1,176 +1,176 @@
-let express = require("express");
-let router = express.Router();
-let functionList = require("../functions");
-let getdbo = require("../mongo-dbo-function");
-let ObjectID = require("mongodb").ObjectID;
-let multer = require("multer");
-let fs = require("fs");
+let express = require('express')
+let router = express.Router()
+let functionList = require('../functions')
+let getdbo = require('../mongo-dbo-function')
+let ObjectID = require('mongodb').ObjectID
+let multer = require('multer')
+let fs = require('fs')
 
-let sampleItems = require("../items.js");
+let sampleItems = require('../items.js')
 
-router.use(express.static(__dirname + "/images"));
+router.use(express.static(__dirname + '/images'))
 
-let dbo;
-setTimeout(() => (dbo = getdbo()), 2000);
+let dbo
+setTimeout(() => (dbo = getdbo()), 2000)
 
 let storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, "./back/routes/images");
+  destination: function (req, file, cb) {
+    cb(null, './back/routes/images')
   },
-  filename: function(req, file, cb) {
-    console.log("filename body", req.body);
-    cb(null, req.body.id + ".jpg");
+  filename: function (req, file, cb) {
+    console.log('filename body', req.body)
+    cb(null, req.body.id + '.jpg')
   }
-});
+})
 
-let upload = multer({ storage: storage });
+let upload = multer({ storage: storage })
 
-router.post("/upload", upload.single("image"), function(req, res, next) {
-  functionList.logEPTrigger(req.originalUrl);
-  console.log("file", req.file);
-  let filename = req.file.filename;
-  console.log("req.body.id", req.body.id);
+router.post('/upload', upload.single('image'), function (req, res, next) {
+  functionList.logEPTrigger(req.originalUrl)
+  console.log('file', req.file)
+  let filename = req.file.filename
+  console.log('req.body.id', req.body.id)
   // req.file is the image file
   // req.body holds text fields
-  res.status(200).json({ success: true });
-});
+  res.status(200).json({ success: true })
+})
 
-router.post("/getImage");
+router.post('/getImage')
 
-router.post("/addItem", (req, res) => {
-  functionList.logEPTrigger(req.originalUrl);
-  let reqBody = req.body;
+router.post('/addItem', (req, res) => {
+  functionList.logEPTrigger(req.originalUrl)
+  let reqBody = req.body
 
-  let sessionId = functionList.stringToNumber(req.cookies.__sid);
-  //IMPORTANT: query for cookie must be as number, NOT a string
+  let sessionId = functionList.stringToNumber(req.cookies.__sid)
+  // IMPORTANT: query for cookie must be as number, NOT a string
   dbo
-    .collection("sessions")
+    .collection('sessions')
     .find({ sessionId: sessionId })
     .toArray((err, result) => {
-      console.log("sessions", result);
-      let username = result[0].username;
-      console.log("username", username);
+      console.log('sessions', result)
+      let username = result[0].username
+      console.log('username', username)
 
       try {
-        console.log("reqBody", reqBody);
-        let title = reqBody.title;
-        console.log("title", title);
-        let category = reqBody.category;
-        console.log("category", category);
-        let description = reqBody.description;
-        console.log("description", description);
-        let price = reqBody.price;
-        console.log("price", price);
-        let fd = reqBody.fd;
-        console.log("fd", fd);
-        let likes = reqBody.likes;
-        console.log("likes", likes);
-        let seller = username;
-        console.log("seller", seller);
-        let reqBodyArr = [title, category, description, price, fd, likes];
+        console.log('reqBody', reqBody)
+        let title = reqBody.title
+        console.log('title', title)
+        let category = reqBody.category
+        console.log('category', category)
+        let description = reqBody.description
+        console.log('description', description)
+        let price = reqBody.price
+        console.log('price', price)
+        let fd = reqBody.fd
+        console.log('fd', fd)
+        let likes = reqBody.likes
+        console.log('likes', likes)
+        let seller = username
+        console.log('seller', seller)
+        let reqBodyArr = [title, category, description, price, fd, likes]
         reqBodyArr.every(elem => {
           // console.log("elem",elem)
           // console.log(elem == undefined);
           if (elem === undefined || elem.length === 0) {
-            throw `parameter is missing`;
+            throw `parameter is missing`
           }
-          return true;
-        });
+          return true
+        })
       } catch (e) {
-        console.log(e);
-        res.status(200).json({ success: false, message: "parameters missing" });
-        return;
+        console.log(e)
+        res.status(200).json({ success: false, message: 'parameters missing' })
+        return
       }
 
-      dbo.collection("items").insertOne(reqBody, (err, result) => {
-        if (err) throw err;
-        console.log(result);
-        console.log("success");
-        res.status(200).json({ success: true });
-      });
-    });
-});
+      dbo.collection('items').insertOne(reqBody, (err, result) => {
+        if (err) throw err
+        console.log(result)
+        console.log('success')
+        res.status(200).json({ success: true })
+      })
+    })
+})
 
-router.post("/removeItem", (req, res) => {
-  functionList.logEPTrigger(req.originalUrl);
-  let reqBody = req.body;
-  console.log("reqBody", reqBody);
-  let itemId = reqBody.itemId;
-  console.log("itemId", itemId);
+router.post('/removeItem', (req, res) => {
+  functionList.logEPTrigger(req.originalUrl)
+  let reqBody = req.body
+  console.log('reqBody', reqBody)
+  let itemId = reqBody.itemId
+  console.log('itemId', itemId)
 
   dbo
-    .collection("items")
+    .collection('items')
     .deleteOne({ _id: ObjectID(itemId) }, (err, result) => {
-      if (err) throw err;
+      if (err) throw err
       res
         .status(200)
-        .json({ success: true, message: "deleted item with id:" + itemId });
-    });
-});
+        .json({ success: true, message: 'deleted item with id:' + itemId })
+    })
+})
 // useless endpoint
-router.post("/findItemById", (req, res) => {
-  functionList.logEPTrigger(req.originalUrl);
-  let id = req.id;
-  console.log("id", id);
+router.post('/findItemById', (req, res) => {
+  functionList.logEPTrigger(req.originalUrl)
+  let id = req.id
+  console.log('id', id)
   dbo
-    .collection("items")
+    .collection('items')
     .find({})
     .toArray((err, result) => {
-      console.log("result", result);
-      console.log(result[0]._id.toString());
-    });
-});
+      console.log('result', result)
+      console.log(result[0]._id.toString())
+    })
+})
 
-router.get("/getItems", (req, res) => {
-  functionList.logEPTrigger(req.originalUrl);
+router.get('/getItems', (req, res) => {
+  functionList.logEPTrigger(req.originalUrl)
   dbo
-    .collection("items")
+    .collection('items')
     .find({})
     .toArray((err, result) => {
-      if (err) throw err;
-      console.log("result", result);
-      res.status(200).json({ results: result, success: true });
-    });
-});
+      if (err) throw err
+      console.log('result', result)
+      res.status(200).json({ results: result, success: true })
+    })
+})
 
-router.post("/addManyItems", (req, res) => {
-  functionList.logEPTrigger(req.originalUrl);
+router.post('/addManyItems', (req, res) => {
+  functionList.logEPTrigger(req.originalUrl)
   // console.log(sampleItems.Items)
-  dbo.collection("items").insertMany(sampleItems.Items, (err, result) => {
-    console.log("items added");
+  dbo.collection('items').insertMany(sampleItems.Items, (err, result) => {
+    console.log('items added')
     res
       .status(200)
-      .json({ success: true, message: "Items added successfully" });
-  });
-});
+      .json({ success: true, message: 'Items added successfully' })
+  })
+})
 
-router.post("/searchItems", (req, res) => {
-  functionList.logEPTrigger(req.originalUrl);
-  let queryCriteria = req.body;
-  console.log("queryCriteria", queryCriteria);
-  let regexSearch = new RegExp(queryCriteria.$regex);
-  console.log("regexSearch", regexSearch);
+router.post('/searchItems', (req, res) => {
+  functionList.logEPTrigger(req.originalUrl)
+  let queryCriteria = req.body
+  console.log('queryCriteria', queryCriteria)
+  let regexSearch = new RegExp(queryCriteria.$regex)
+  console.log('regexSearch', regexSearch)
   dbo
-    .collection("items")
+    .collection('items')
     .find({
       $or: [
-        { category: { $regex: regexSearch, $options: "i" } },
-        { description: { $regex: regexSearch, $options: "i" } },
+        { category: { $regex: regexSearch, $options: 'i' } },
+        { description: { $regex: regexSearch, $options: 'i' } },
         // { _id: { $regex: regexSearch, $options: "i" } },
-        { title: { $regex: regexSearch, $options: "i" } }
+        { title: { $regex: regexSearch, $options: 'i' } }
       ]
     })
     .toArray((err, result) => {
-      console.log("result", result);
-      console.log("test", result[0]._id);
+      console.log('result', result)
+      console.log('test', result[0]._id)
       res
         .status(200)
         .json({
           result: result,
           success: true,
-          message: "Search completed and found " + result.length + " objects"
-        });
-    });
-});
+          message: 'Search completed and found ' + result.length + ' objects'
+        })
+    })
+})
 
-module.exports = router;
+module.exports = router

@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import '../css/style.css'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
+// import { connect } from 'react-redux'
+
+// import {fetchItemsAction} from '../actions/itemActions'
 
 // import { Route, BrowserRouter, Link } from 'react-router-dom'
 
@@ -18,19 +21,26 @@ class ItemPage extends Component {
   //This function runs by itself and change the state
   //Adds all the arrays
   componentDidMount() {
-    fetch('http://localhost:4000/items/getItems')
-      .then(x => x.text())
-      .then(responseBody => {
-        // console.log('responseBody', responseBody)
-        let parsedResponseBody = JSON.parse(responseBody)
-        // console.log('parsedResponseBody :', parsedResponseBody)
-        let itemsArr = parsedResponseBody.results
-        this.setState({ itemsArr: itemsArr })
+      // // Redux version
+      // this.props.fetchItemsAction()
+      // this.verifyId(this.props.itemsArr)
+      
+      
+      // NOTE: Old version
+      fetch('http://localhost:4000/items/getItems')
+        .then(x => x.text())
+        .then(responseBody => {
+            // console.log('responseBody', responseBody)
+            let parsedResponseBody = JSON.parse(responseBody)
+            // console.log('parsedResponseBody :', parsedResponseBody)
+            let itemsArr = parsedResponseBody.results
+            this.setState({ itemsArr: itemsArr })
         this.verifyId(itemsArr)
       })
   }
 
   verifyId = itemsArr => {
+    console.log('itemsArr',itemsArr)
     // console.log('itemsArr :', this.state.itemsArr)
     let segment_str = window.location.pathname
     let segment_array = segment_str.split('/')
@@ -79,14 +89,23 @@ class ItemPage extends Component {
 
   render() {
     console.log('this.state.newArr', this.state.newArr)
-    let category = this.state.newArr.category
-    let desc = this.state.newArr.description
-    let fd = this.state.newArr.fd
-    let likes = this.state.newArr.likes
-    let price = this.state.newArr.price
-    let seller = this.state.newArr.seller
-    let title = this.state.newArr.title
-    let id = this.state.newArr._id
+    // return(<div></div>)
+    // if (this.state.newArr.length===0) return (<div></div>)
+    // debugger
+    // We don't use those fields
+    // let {id , category, likes, seller} = this.state.newArr
+
+    let {title, desc, fd, price} = this.state.newArr
+
+    // Old way to implement them
+    // let category = this.state.newArr.category
+    // let desc = this.state.newArr.description
+    // let fd = this.state.newArr.fd
+    // let likes = this.state.newArr.likes
+    // let price = this.state.newArr.price
+    // let seller = this.state.newArr.seller
+    // let title = this.state.newArr.title
+    // let id = this.state.newArr._id
 
     return (
       <div className="container container-item-page">
@@ -115,4 +134,11 @@ class ItemPage extends Component {
   }
 }
 
+// const mapStateToProps = state => {
+//   return {
+//     itemsArr: state.items.allItems
+//   }
+// }
+
+// export default connect(mapStateToProps, {fetchItemsAction})(withRouter(ItemPage))
 export default withRouter(ItemPage)
