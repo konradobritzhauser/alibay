@@ -7,9 +7,10 @@ import { LOGGEDIN } from "../actions/types";
 export class unConnectedCart extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { totalSum: 0 };
     this.displayCartItems = this.displayCartItems.bind(this);
     this.clearCart = this.clearCart.bind(this);
+    this.DisplayTotalPrice=this.DisplayTotalPrice.bind(this)
   }
   componentDidMount() {
     // const data = await (await axios({
@@ -61,17 +62,25 @@ export class unConnectedCart extends Component {
   }
   displayCartItems() {
     return this.props.cart.items.map(elem => {
+      let totalSum = this.state.totalSum + elem.price;
+      // this.setState({ totalSum: totalSum });
       return (
         <div className="container">
           <h4>{elem.title}</h4>
           <div className="row">
-            <h6>{"$" + elem.price}</h6>
             <div />
             <img src={elem.fd} style={{ width: "100px", height: "50px" }} />
+            <h6>{"$" + elem.price}</h6>
           </div>
+         
         </div>
       );
     });
+  }
+  DisplayTotalPrice() {
+    return <div>
+      <h4>Sum Total:{this.state.totalSum}</h4>
+    </div>
   }
   clearCart() {
     let that = this;
@@ -83,21 +92,23 @@ export class unConnectedCart extends Component {
   }
 
   render() {
-    if(this.props.loggedIn){
+    if (this.props.loggedIn) {
       return (
         <div>
           <div>
             <h3>Your Cart</h3>
             <div>{this.displayCartItems()}</div>
             <input type="button" onClick={this.clearCart} value="Clear Cart" />
+            <input type="button" onClick={this.clearCart} value="Complete Checkout" />
           </div>
         </div>
       );
     }
-    return(
-      <h3 className="container  text-center">To view you cart please log in or sign up</h3>
-    )
-    
+    return (
+      <h3 className="container  text-center">
+        To view you cart please log in or sign up
+      </h3>
+    );
   }
 }
 
@@ -105,7 +116,7 @@ let mapStateToProps = function(state) {
   return {
     cart: state.cart,
     items: state.items,
-    loggedin:state.loggedIn
+    loggedIn: state.user.loggedIn
   };
 };
 

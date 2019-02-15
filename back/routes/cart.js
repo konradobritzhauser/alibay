@@ -26,6 +26,7 @@ router.post("/addItem", (req, res) => {
       let username = result[0].username;
       console.log("username", username);
       console.log("itemId added", itemId);
+      
       dbo.collection("carts").updateOne(
         { username: username },
         {

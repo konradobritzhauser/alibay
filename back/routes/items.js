@@ -15,7 +15,7 @@ setTimeout(() => (dbo = getdbo()), 2000);
 
 let storage = multer.diskStorage({
   destination: function(req, file, cb) {
-    cb(null, "./back/aaa");
+    cb(null, "./back/routes/images");
   },
   filename: function(req, file, cb) {
     console.log("filename body", req.body);
@@ -41,43 +41,54 @@ router.post("/addItem", (req, res) => {
   functionList.logEPTrigger(req.originalUrl);
   let reqBody = req.body;
 
-  try {
-    console.log("reqBody", reqBody);
-    let title = reqBody.title;
-    console.log("title", title);
-    let category = reqBody.category;
-    console.log("category", category);
-    let description = reqBody.description;
-    console.log("description", description);
-    let price = reqBody.price;
-    console.log("price", price);
-    let fd = reqBody.fd;
-    console.log("fd", fd);
-    let likes = reqBody.likes;
-    console.log("likes", likes);
-    let seller = reqBody.seller;
-    console.log("seller", seller);
-    let reqBodyArr = [title, category, description, price, fd, likes, seller];
-    reqBodyArr.every(elem => {
-      // console.log("elem",elem)
-      // console.log(elem == undefined);
-      if (elem === undefined || elem.length === 0) {
-        throw `parameter is missing`;
-      }
-      return true;
-    });
-  } catch (e) {
-    console.log(e);
-    res.status(200).json({ success: false, message: "parameters missing" });
-    return;
-  }
+  let sessionId = functionList.stringToNumber(req.cookies.__sid);
+  //IMPORTANT: query for cookie must be as number, NOT a string
+  dbo
+    .collection("sessions")
+    .find({ sessionId: sessionId })
+    .toArray((err, result) => {
+      console.log("sessions", result);
+      let username = result[0].username;
+      console.log("username", username);
 
-  dbo.collection("items").insertOne(reqBody, (err, result) => {
-    if (err) throw err;
-    console.log(result);
-    console.log("success");
-    res.status(200).json({ success: true });
-  });
+      try {
+        console.log("reqBody", reqBody);
+        let title = reqBody.title;
+        console.log("title", title);
+        let category = reqBody.category;
+        console.log("category", category);
+        let description = reqBody.description;
+        console.log("description", description);
+        let price = reqBody.price;
+        console.log("price", price);
+        let fd = reqBody.fd;
+        console.log("fd", fd);
+        let likes = reqBody.likes;
+        console.log("likes", likes);
+        let seller = username;
+        console.log("seller", seller);
+        let reqBodyArr = [title, category, description, price, fd, likes];
+        reqBodyArr.every(elem => {
+          // console.log("elem",elem)
+          // console.log(elem == undefined);
+          if (elem === undefined || elem.length === 0) {
+            throw `parameter is missing`;
+          }
+          return true;
+        });
+      } catch (e) {
+        console.log(e);
+        res.status(200).json({ success: false, message: "parameters missing" });
+        return;
+      }
+
+      dbo.collection("items").insertOne(reqBody, (err, result) => {
+        if (err) throw err;
+        console.log(result);
+        console.log("success");
+        res.status(200).json({ success: true });
+      });
+    });
 });
 
 router.post("/removeItem", (req, res) => {
@@ -151,8 +162,14 @@ router.post("/searchItems", (req, res) => {
     })
     .toArray((err, result) => {
       console.log("result", result);
-      console.log('test',result[0]._id)
-      res.status(200).json({result:result,success:true,message:"Search completed and found "+result.length+" objects"})
+      console.log("test", result[0]._id);
+      res
+        .status(200)
+        .json({
+          result: result,
+          success: true,
+          message: "Search completed and found " + result.length + " objects"
+        });
     });
 });
 
