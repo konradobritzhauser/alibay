@@ -7,10 +7,11 @@ import { LOGGEDIN } from "../actions/types";
 export class unConnectedCart extends Component {
   constructor(props) {
     super(props);
-    this.state = { totalSum: 0 };
+    this.state = { totalSum: 0,checkedOut:false };
     this.displayCartItems = this.displayCartItems.bind(this);
     this.clearCart = this.clearCart.bind(this);
-    this.DisplayTotalPrice=this.DisplayTotalPrice.bind(this)
+    this.DisplayTotalPrice = this.DisplayTotalPrice.bind(this);
+    
   }
   componentDidMount() {
     // const data = await (await axios({
@@ -72,15 +73,17 @@ export class unConnectedCart extends Component {
             <img src={elem.fd} style={{ width: "100px", height: "50px" }} />
             <h6>{"$" + elem.price}</h6>
           </div>
-         
+          <h5>Total Sum: {totalSum}</h5>
         </div>
       );
     });
   }
   DisplayTotalPrice() {
-    return <div>
-      <h4>Sum Total:{this.state.totalSum}</h4>
-    </div>
+    return (
+      <div>
+        <h4>Sum Total:{this.state.totalSum}</h4>
+      </div>
+    );
   }
   clearCart() {
     let that = this;
@@ -88,18 +91,37 @@ export class unConnectedCart extends Component {
       method: "post",
       url: "cart/clearCart",
       credentials: "include"
-    }).then(that.getCartItems());
+    }).then(function(){
+      // that.getCartItems()
+      that.setState({checkedOut:true})
+    }
+      
+    );
   }
 
   render() {
-    if (this.props.loggedIn) {
+    if(this.state.checkedOut){
+      return <h3 className="container  text-center">Checkout complete. Thank you for choosing Alibay!</h3>
+    }
+
+    else if (this.props.loggedIn) {
       return (
         <div>
           <div>
             <h3>Your Cart</h3>
             <div>{this.displayCartItems()}</div>
-            <input type="button" onClick={this.clearCart} value="Clear Cart" />
-            <input type="button" onClick={this.clearCart} value="Complete Checkout" />
+            <div>
+              <input
+                type="button"
+                onClick={this.clearCart}
+                value="Clear Cart"
+              />
+              <input
+                type="button"
+                onClick={this.clearCart}
+                value="Complete Checkout"
+              />
+            </div>
           </div>
         </div>
       );

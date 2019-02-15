@@ -26,15 +26,24 @@ router.post("/addItem", (req, res) => {
       let username = result[0].username;
       console.log("username", username);
       console.log("itemId added", itemId);
-      
+      let newItemId=[ObjectID(itemId)]
+      dbo
+                .collection("items")
+                .find({ _id: { $in: newItemId } })
+                .toArray((err, result) => {
+                  console.log("Object to be added",result)
+                
+               
+
       dbo.collection("carts").updateOne(
         { username: username },
         {
-          $push: { cart: itemId }
+          $push: { cart: result[0] }
         },
         res.status(200).json({ success: true, message: "item added to cart" })
       );
     });
+  });
 });
 
 //expects and object such as {"username":"konrad","itemId":200}
@@ -119,18 +128,12 @@ router.post("/getCart", (req, res) => {
               let cart = result[0].cart;
               console.log('cart', cart)
 
-              let cartObjectIds = cart.map(item => ObjectID(item));
-              console.log('object ids', cartObjectIds)
-              dbo
-                .collection("items")
-                .find({ _id: { $in: cartObjectIds } })
-                .toArray((err, cart) => {
-                  console.log("cart", cart);
+              
                   res.status(200).json({
                     success: true,
                     message: "cart retrieved",
                     results: cart
-                  });
+                
                 });
               // console.log("cart", cart);
               // res
