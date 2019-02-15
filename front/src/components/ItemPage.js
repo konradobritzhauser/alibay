@@ -73,15 +73,17 @@ class ItemPage extends Component {
     }
     console.log(body)
     try {
-      const check = axios({
+      axios({
         method: 'post',
         url: '/cart/addItem',
         credentials: 'include',
         data: body
       })
-      if (check.success) {
-        this.props.history.push('/cart')
-      }
+      .then(check=>{
+        if (check.data.success) {
+          this.props.history.push('/cart')
+        }
+      })
     } catch (err) {
       console.log('err', err)
     }
