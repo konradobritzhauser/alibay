@@ -211,7 +211,7 @@ router.post('/searchItems', (req, res) => {
   let queryCriteria = req.body
   console.log('req', req.body)
   console.log('queryCriteria', queryCriteria)
-  let regexSearch = new RegExp(queryCriteria.$regex)
+  let regexSearch = new RegExp(queryCriteria.search)
   console.log('regexSearch', regexSearch)
   dbo
     .collection('items')
@@ -225,7 +225,7 @@ router.post('/searchItems', (req, res) => {
     })
     .toArray((err, result) => {
       console.log('result', result)
-      console.log('test', result[0]._id)
+      // console.log('test', result[0]._id)
       res
         .status(200)
         .json({

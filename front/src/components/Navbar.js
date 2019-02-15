@@ -100,9 +100,10 @@ class Navbar extends Component {
               <input
                 className='form-control mr-sm-2'
                 id='navbar-search'
-                type='search'
+                type='text'
                 placeholder='Search for products'
                 aria-label='Search'
+                value={this.state.searchInput}
                 onChange={onSearchChange}
               />
               <button
