@@ -6,11 +6,11 @@ import MdItem from './MdItem'
 import { fetchItemsAction } from '../actions/itemActions'
 
 export class Items extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchItemsAction()
   }
 
-  render () {
+  render() {
     const getItems = () => {
       // console.log('this.props.items', this.props.items)
       let { items } = this.props
@@ -20,8 +20,8 @@ export class Items extends Component {
       }
     }
     return (
-      <div className='container mr-auto'>
-        <div className='row'>{getItems()}</div>
+      <div className="container container-for-items">
+        <div className="row">{getItems()}</div>
       </div>
     )
   }

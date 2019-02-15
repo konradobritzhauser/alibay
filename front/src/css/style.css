@@ -173,6 +173,12 @@ html {
   flex: 1;
 }
 
+.container-for-items {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 .item-holder {
   height: 100%;
   margin: 0 auto;
@@ -182,6 +188,19 @@ html {
   padding-left: 40px;
   padding-bottom: 40px;
 }
+
+.card-container {
+  flex: 1 0 20%;
+  margin: 5px;
+  height: 200px;
+}
+
+.card-img-top {
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+
 /*SELL FORM STYLES*/
 
 .categories-main {
@@ -206,12 +225,9 @@ html {
   margin-top: 15px;
 }
 .buy-photo {
-  margin-top: 70px;
-  background-color: red;
-  height: 200px;
-  width: 280px;
+  margin-top: 40px;
   text-align: center;
-  line-height: 200px;
+  width: 100%;
 }
 
 .buy-price {
