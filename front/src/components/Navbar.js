@@ -58,7 +58,7 @@ class Navbar extends Component {
         const data = await (await axios({
           method: 'post',
           url: '/items/searchItems',
-          data: { $regex: this.state.searchInput },
+          data: { search: this.state.searchInput },
           credentials: 'include'
         })).data
         console.log(data)
