@@ -68,7 +68,7 @@ export class SellForm extends Component {
 
     let data = (await axios({
       method: 'post',
-      url: 'items/upload',
+      url: 'items/addItem',
       data: fd,
       credentials: 'include'
     })).data
