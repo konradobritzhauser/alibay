@@ -17,25 +17,92 @@ let storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './back/routes/images')
   },
-  filename: function (req, file, cb) {
-    console.log('filename body', req.body)
-    cb(null, req.body.id + '.jpg')
+  filename: function(req, file, cb) {
+    console.log("filename body", req.body);
+    cb(null, Math.floor(Math.random()*10000000+1000000).toString() + ".jpg");
   }
 })
 
 let upload = multer({ storage: storage })
 
-router.post('/upload', upload.single('image'), function (req, res, next) {
-  functionList.logEPTrigger(req.originalUrl)
-  console.log('file', req.file)
-  let filename = req.file.filename
-  console.log('req.body.id', req.body.id)
+
+/////////////////////////////////
+// router.post("/upload", upload.single("image"), function(req, res, next) {
+//   functionList.logEPTrigger(req.originalUrl);
+//   console.log("file", req.file);
+//   let filename = req.file.filename;
+//   console.log("req.body.id", req.body.id);
+//   // req.file is the image file
+//   // req.body holds text fields
+//   res.status(200).json({ success: true });
+// });
+
+router.post("/upload", upload.single("image"), function(req, res, next) {
+  functionList.logEPTrigger(req.originalUrl);
+  console.log("file", req.file);
+  let filename = req.file.filename;
+  console.log("req.body.id", req.body.id);
   // req.file is the image file
   // req.body holds text fields
-  res.status(200).json({ success: true })
-})
+  let reqBody = req.body;
 
-router.post('/getImage')
+  let sessionId = functionList.stringToNumber(req.cookies.__sid);
+  //IMPORTANT: query for cookie must be as number, NOT a string
+  dbo
+    .collection("sessions")
+    .find({ sessionId: sessionId })
+    .toArray((err, result) => {
+      console.log("sessions", result);
+      let username = result[0].username;
+      console.log("username", username);
+      console.log("reqfile",req.file)
+
+      try {
+        console.log("reqBody", reqBody);
+        let title = reqBody.title;
+        console.log("title", title);
+        let category = reqBody.category;
+        console.log("category", category);
+        let description = reqBody.description;
+        console.log("description", description);
+        let price = reqBody.price;
+        console.log("price", price);
+        let fd = "http://localhost:4000/items/"+req.file.filename;
+        console.log("fd", fd);
+        
+        let seller = username;
+        console.log("seller", seller);
+
+        let newObject={title,category,description,price,fd,seller}
+        let reqBodyArr = [title, category, description, price, fd];
+        reqBodyArr.every(elem => {
+          // console.log("elem",elem)
+          // console.log(elem == undefined);
+          if (elem === undefined || elem.length === 0) {
+            throw `parameter is missing`;
+          }
+          return true;
+        });
+     
+      
+      dbo.collection("items").insertOne(newObject, (err, result) => {
+        if (err) throw err;
+        console.log("insertOne Result",result);
+        console.log("success");
+        res.status(200).json({ success: true,results:result });
+      });
+    } catch (e) {
+      console.log(e);
+      res.status(200).json({ success: false, message: "parameters missing" });
+      return;
+    }
+    });
+    
+    
+
+});
+
+// router.post("/getImage");
 
 router.post('/addItem', (req, res) => {
   functionList.logEPTrigger(req.originalUrl)
@@ -52,22 +119,21 @@ router.post('/addItem', (req, res) => {
       console.log('username', username)
 
       try {
-        console.log('reqBody', reqBody)
-        let title = reqBody.title
-        console.log('title', title)
-        let category = reqBody.category
-        console.log('category', category)
-        let description = reqBody.description
-        console.log('description', description)
-        let price = reqBody.price
-        console.log('price', price)
-        let fd = reqBody.fd
-        console.log('fd', fd)
-        let likes = reqBody.likes
-        console.log('likes', likes)
-        let seller = username
-        console.log('seller', seller)
-        let reqBodyArr = [title, category, description, price, fd, likes]
+        console.log("reqBody", reqBody);
+        let title = reqBody.title;
+        console.log("title", title);
+        let category = reqBody.category;
+        console.log("category", category);
+        let description = reqBody.description;
+        console.log("description", description);
+        let price = reqBody.price;
+        console.log("price", price);
+        let fd = reqBody.fd;
+        console.log("fd", fd);
+        
+        let seller = username;
+        console.log("seller", seller);
+        let reqBodyArr = [title, category, description, price, fd];
         reqBodyArr.every(elem => {
           // console.log("elem",elem)
           // console.log(elem == undefined);
