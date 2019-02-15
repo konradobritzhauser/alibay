@@ -65,7 +65,7 @@ export class unConnectedCart extends Component {
     console.log("props",this.props)
      let getCartItems=()=> {
       
-      this.props.cart.items.map(elem => {
+      return this.props.cart.items.map(elem => {
         totalSum = this.state.totalSum + elem.price;
         // this.setState({ totalSum: totalSum });
         return (
@@ -84,7 +84,7 @@ export class unConnectedCart extends Component {
     return (
       <div>
         {getCartItems()}
-        <h5>Total wSum: {totalSum}</h5>
+        <h5>Total Sum: {totalSum}</h5>
       </div>
     )
   }
@@ -95,7 +95,8 @@ export class unConnectedCart extends Component {
       </div>
     );
   }
-  clearCart() {
+  clearCart(e) {
+    console.log("e",e.currentTarget)
     let that = this;
     axios({
       method: "post",
@@ -103,6 +104,7 @@ export class unConnectedCart extends Component {
       credentials: "include"
     }).then(function() {
       // that.getCartItems()
+     
       that.setState({ checkedOut: true });
     });
   }
